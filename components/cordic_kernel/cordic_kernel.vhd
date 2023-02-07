@@ -19,7 +19,7 @@ entity cordic_kernel is
         atan      : in signed(N_BITS_ANGLE-1 downto 0);
         -- Mode flag
         -- 0: Rotation mode.
-        -- 1: Vectoring mod.
+        -- 1: Vectoring mode.
         mode      : in std_logic;
         ena       : in std_logic;
         x_o       : out signed(N_BITS_VECTOR downto 0);
@@ -57,12 +57,14 @@ architecture iterative_arch of cordic_kernel is
 begin
     process(mode, x_i, y_i, z_i)
     begin
+        -- 0: Rotation mode.
         if mode = '0' then
             if z_i >= to_signed(0, N_BITS_ANGLE) then
                 d <= '0';
             else
                 d <= '1';
             end if;
+        -- 1: Vectoring mode.
         else
             if y_i >= to_signed(0, N_BITS_ANGLE) then
                 d <= '1';
