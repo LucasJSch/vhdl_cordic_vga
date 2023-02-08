@@ -27,16 +27,16 @@ begin
         process(clk)
         begin
             if rising_edge(clk) then
-                angle <= angle_aux;
+                case p is
+                    when "10" => angle_aux <= angle_aux + ANGLE_DIFF;
+                    when "01" => angle_aux <= angle_aux - ANGLE_DIFF;
+                    when others => null;
+                end case;
             end if;
         end process;
 
-        process(p)
+        process(angle_aux)
         begin
-            case p is
-                when "10" => angle_aux <= angle_aux + ANGLE_DIFF;
-                when "01" => angle_aux <= angle_aux - ANGLE_DIFF;
-                when others => null;
-              end case;
+            angle <= angle_aux;
         end process;
 end;
