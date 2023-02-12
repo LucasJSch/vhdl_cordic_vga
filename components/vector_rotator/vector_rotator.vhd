@@ -18,6 +18,7 @@ entity vector_rotator is
         -- 2**(N_BITS_ANGLE-1) --> 180
         -- 2**(N_BITS_ANGLE-2) --> 90
         -- 2**(N_BITS_ANGLE-3) --> 45
+        clk   : in std_logic;
         x0    : in signed(N_BITS_VECTOR-1 downto 0);
         y0    : in signed(N_BITS_VECTOR-1 downto 0);
         z0    : in signed(N_BITS_VECTOR-1 downto 0);
@@ -62,7 +63,7 @@ architecture vector_rotator_arch of vector_rotator is
     signal y3           : signed(N_BITS_VECTOR-1 downto 0) := (others => '0');
     signal z3           : signed(N_BITS_VECTOR-1 downto 0) := (others => '0');
 
-    signal processing : std_logic = '0';
+    signal processing : std_logic := '0';
 
 begin
         process(start)
@@ -73,17 +74,15 @@ begin
         -- TODO: Normalizar vectores post-cordic
         process(clk)
         begin
-            if rising_edge(clk)
+            if rising_edge(clk) then
                 case current_state is
                     when start_state =>
                         start_cordic <= '0';
-                        alpha_done <= '0';
-                        beta_done <= '0';
-                        gamma_done <= '0';
                         processing <= '0';
                         done <= '0';
                         current_state <= alpha_start_state;
 
+                    -- Alpha states
                     when alpha_start_state =>
                         processing <= '1';
                         start_cordic <= '1';
@@ -93,37 +92,39 @@ begin
                         current_state <= alpha_processing_state;
                     when alpha_processing_state =>
                         start_cordic <= '0';
-                        if rising_edge(cordic_done)
+                        if rising_edge(done_cordic) then
                             current_state <= beta_start_state;
                             x1 <= x0;
                             y1 <= xout_cordic;
                             z1 <= yout_cordic;
                         end if;
 
+                    -- Beta states
                     when beta_start_state =>
-                        x1_cordic <= x1_cordic;
-                        y1_cordic <= z1_cordic;
+                        xin_cordic <= x1;
+                        yin_cordic <= z1;
                         angle_cordic <= beta;
                         start_cordic <= '1';
                         current_state <= beta_processing_state;
                     when beta_processing_state =>
                         start_cordic <= '0';
-                        if rising_edge(cordic_done)
+                        if rising_edge(done_cordic) then
                             current_state <= gamma_start_state;
                             x2 <= xout_cordic;
                             y2 <= y1;
                             z2 <= yout_cordic;
                         end if;
                     
+                    -- Gamma states
                     when gamma_start_state =>
-                        x1_cordic <= x2_cordic;
-                        y1_cordic <= y2_cordic;
+                        xin_cordic <= x2;
+                        yin_cordic <= y2;
                         angle_cordic <= gamma;
                         start_cordic <= '1';
                         current_state <= gamma_processing_state;
                     when gamma_processing_state =>
                         start_cordic <= '0';
-                        if rising_edge(cordic_done)
+                        if rising_edge(done_cordic) then
                             current_state <= done_state;
                             x3 <= xout_cordic;
                             y3 <= yout_cordic;
