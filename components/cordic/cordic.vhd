@@ -36,6 +36,7 @@ architecture cordic_arch of cordic is
             x1   : in std_logic_vector(N_BITS_VECTOR-1 downto 0);
             y1   : in std_logic_vector(N_BITS_VECTOR-1 downto 0);
             beta : in signed(N_BITS_ANGLE-1 downto 0);
+            mode : in std_logic;
             start: in std_logic;
             x2   : out std_logic_vector(N_BITS_VECTOR downto 0);
             y2   : out std_logic_vector(N_BITS_VECTOR downto 0);
@@ -75,7 +76,7 @@ begin
         x1 => x1,
         y1 => y1,
         beta => beta_adjusted,
-        mode => 0, -- Rotation mode only
+        mode => '0', -- Rotation mode only
         start => start,
         x2   => x2,
         y2   => y2,
