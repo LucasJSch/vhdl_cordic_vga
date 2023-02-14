@@ -126,24 +126,24 @@ begin
                             start_cordic <= '0';
                             processing <= '0';
                             done <= '0';
-                            current_state <= alpha_start_state;
+                            current_state <= gamma_start_state;
 
-                        -- Alpha states
-                        when alpha_start_state =>
+                        -- Gamma states
+                        when gamma_start_state =>
                             processing <= '1';
                             start_cordic <= '1';
-                            xin_cordic <= yin;
-                            yin_cordic <= zin;
-                            angle_cordic <= alpha;
-                            current_state <= alpha_processing_state;
-                        when alpha_processing_state =>
+                            xin_cordic <= xin;
+                            yin_cordic <= yin;
+                            angle_cordic <= gamma;
+                            current_state <= gamma_processing_state;
+                        when gamma_processing_state =>
                             start_cordic <= '0';
                             if done_cordic = '1' then
                                 current_state <= beta_start_state;
                                 -- TODO: Asumo xin positivo. Contemplar otros casos.
-                                x1 <= '0' & xin;
-                                y1 <= signed_mul(xout_cordic, CORDIC_SCALING);
-                                z1 <= signed_mul(yout_cordic, CORDIC_SCALING);
+                                x1 <= signed_mul(xout_cordic, CORDIC_SCALING);
+                                y1 <= signed_mul(yout_cordic, CORDIC_SCALING);
+                                z1 <= '0' & zin;
                             end if;
 
                         -- Beta states
@@ -156,26 +156,26 @@ begin
                         when beta_processing_state =>
                             start_cordic <= '0';
                             if done_cordic = '1' then
-                                current_state <= gamma_start_state;
+                                current_state <= alpha_start_state;
                                 x2 <= signed_mul(yout_cordic, CORDIC_SCALING);
                                 y2 <= y1;
                                 z2 <= signed_mul(xout_cordic, CORDIC_SCALING);
                             end if;
                         
-                        -- Gamma states
-                        when gamma_start_state =>
-                            xin_cordic <= get_shifted_vector(x2);
-                            yin_cordic <= get_shifted_vector(y2);
-                            angle_cordic <= gamma;
+                        -- Alpha states
+                        when alpha_start_state =>
+                            xin_cordic <= get_shifted_vector(y2);
+                            yin_cordic <= get_shifted_vector(z2);
+                            angle_cordic <= alpha;
                             start_cordic <= '1';
-                            current_state <= gamma_processing_state;
-                        when gamma_processing_state =>
+                            current_state <= alpha_processing_state;
+                        when alpha_processing_state =>
                             start_cordic <= '0';
                             if done_cordic = '1' then
                                 current_state <= done_state;
-                                x3 <= signed_mul(xout_cordic, CORDIC_SCALING);
-                                y3 <= signed_mul(yout_cordic, CORDIC_SCALING);
-                                z3 <= z2;
+                                x3 <= x2;
+                                y3 <= signed_mul(xout_cordic, CORDIC_SCALING);
+                                z3 <= signed_mul(yout_cordic, CORDIC_SCALING);
                             end if;
 
                         when done_state =>
