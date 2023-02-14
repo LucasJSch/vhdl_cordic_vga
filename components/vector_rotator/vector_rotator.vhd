@@ -72,8 +72,13 @@ architecture vector_rotator_arch of vector_rotator is
         return retval;
     end signed_mul;
 
+    function get_shifted_vector(a : signed(N_BITS_VECTOR downto 0))
+    return signed is
+    begin
+        return a(a'length-2 downto 0);
+    end get_shifted_vector;
+
 	constant N_ITER         : integer := 15;
-    --constant CORDIC_SCALING : signed(N_BITS_VECTOR-1 downto 0) := "01001110000011000100100110111010";
     constant CORDIC_SCALING : signed(N_BITS_VECTOR-1 downto 0) := to_signed(integer((2**(N_BITS_VECTOR-1)) * 0.6097), N_BITS_VECTOR);
 
     -- Start states: Initializes variables to start processing
@@ -107,12 +112,9 @@ architecture vector_rotator_arch of vector_rotator is
     signal z3           : signed(N_BITS_VECTOR downto 0) := (others => '0');
 
     signal processing : std_logic := '0';
-    
-    signal debug : signed(N_BITS_VECTOR*2-1 downto 0);
 
 begin
 
-        -- TODO: Normalizar vectores post-cordic
         process(clk, start)
         begin
             if rising_edge(clk) then
@@ -138,18 +140,16 @@ begin
                             start_cordic <= '0';
                             if done_cordic = '1' then
                                 current_state <= beta_start_state;
-                                -- TODO: Asumo solo vector positivo.
-                                -- Habra que corregir en el futuro. 
+                                -- TODO: Asumo xin positivo. Contemplar otros casos.
                                 x1 <= '0' & xin;
-                                debug <= xout_cordic(N_BITS_VECTOR-1 downto 0) * CORDIC_SCALING;
                                 y1 <= signed_mul(xout_cordic, CORDIC_SCALING);
                                 z1 <= signed_mul(yout_cordic, CORDIC_SCALING);
                             end if;
 
                         -- Beta states
                         when beta_start_state =>
-                            xin_cordic <= x1(x1'length-2 downto 0);
-                            yin_cordic <= z1(z1'length-2 downto 0);
+                            xin_cordic <= get_shifted_vector(z1);
+                            yin_cordic <= get_shifted_vector(x1);
                             angle_cordic <= beta;
                             start_cordic <= '1';
                             current_state <= beta_processing_state;
@@ -157,15 +157,15 @@ begin
                             start_cordic <= '0';
                             if done_cordic = '1' then
                                 current_state <= gamma_start_state;
-                                x2 <= signed_mul(xout_cordic(N_BITS_VECTOR downto 0), CORDIC_SCALING);
+                                x2 <= signed_mul(yout_cordic, CORDIC_SCALING);
                                 y2 <= y1;
-                                z2 <= signed_mul(yout_cordic(N_BITS_VECTOR downto 0), CORDIC_SCALING);
+                                z2 <= signed_mul(xout_cordic, CORDIC_SCALING);
                             end if;
                         
                         -- Gamma states
                         when gamma_start_state =>
-                            xin_cordic <= x2(x2'length-2 downto 0);
-                            yin_cordic <= y2(y2'length-2 downto 0);
+                            xin_cordic <= get_shifted_vector(x2);
+                            yin_cordic <= get_shifted_vector(y2);
                             angle_cordic <= gamma;
                             start_cordic <= '1';
                             current_state <= gamma_processing_state;
@@ -173,8 +173,8 @@ begin
                             start_cordic <= '0';
                             if done_cordic = '1' then
                                 current_state <= done_state;
-                                x3 <= signed_mul(xout_cordic(N_BITS_VECTOR downto 0), CORDIC_SCALING);
-                                y3 <= signed_mul(yout_cordic(N_BITS_VECTOR downto 0), CORDIC_SCALING);
+                                x3 <= signed_mul(xout_cordic, CORDIC_SCALING);
+                                y3 <= signed_mul(yout_cordic, CORDIC_SCALING);
                                 z3 <= z2;
                             end if;
 
