@@ -56,6 +56,22 @@ architecture vector_rotator_arch of vector_rotator is
             done : out std_logic);
     end component;
 
+    function signed_mul(a : signed(N_BITS_VECTOR-1 downto 0); b : signed(N_BITS_VECTOR-1 downto 0))
+    return signed is
+        variable sign_bit : std_logic;
+        variable retval   : signed(N_BITS_VECTOR-1 downto 0);
+        variable aux_mul  : signed(N_BITS_VECTOR*2-1 downto 0);
+    begin
+        aux_mul := a * b;
+        if (a(a'length-1) = '0' and b(b'length-1) = '0') or (a(a'length-1) = '1' and b(b'length-1) = '1') then
+            sign_bit := '0';
+        else
+            sign_bit := '1';
+        end if;
+        retval := sign_bit & aux_mul((N_BITS_VECTOR*2)-2 downto N_BITS_VECTOR);
+        return retval;
+    end signed_mul;
+
 	constant N_ITER         : integer := 15;
     --constant CORDIC_SCALING : signed(N_BITS_VECTOR-1 downto 0) := "01001110000011000100100110111010";
     constant CORDIC_SCALING : signed(N_BITS_VECTOR-1 downto 0) := to_signed(integer((2**(N_BITS_VECTOR-1)) * 0.6097), N_BITS_VECTOR);
@@ -92,9 +108,6 @@ architecture vector_rotator_arch of vector_rotator is
 
     signal processing : std_logic := '0';
 
-    signal mul_reg1 : signed(((N_BITS_VECTOR*2)-1) downto 0);
-    signal mul_reg2 : signed(((N_BITS_VECTOR*2)-1) downto 0);
-
 begin
 
         -- TODO: Normalizar vectores post-cordic
@@ -124,9 +137,8 @@ begin
                             if done_cordic = '1' then
                                 current_state <= beta_start_state;
                                 x1 <= xin;
-                                -- TODO: Checkear como se hace con multiplicacion de signed y el signo resultante.
-                                mul_reg1 <= xout_cordic(N_BITS_VECTOR-1 downto 0) * CORDIC_SCALING;
-                                mul_reg2 <= yout_cordic(N_BITS_VECTOR-1 downto 0) * CORDIC_SCALING;
+                                y1 <= signed_mul(xout_cordic(N_BITS_VECTOR-1 downto 0), CORDIC_SCALING);
+                                z1 <= signed_mul(yout_cordic(N_BITS_VECTOR-1 downto 0), CORDIC_SCALING);
                             end if;
 
                         -- Beta states
@@ -136,38 +148,30 @@ begin
                             angle_cordic <= beta;
                             start_cordic <= '1';
                             current_state <= beta_processing_state;
-                            y1 <= mul_reg1((N_BITS_VECTOR*2)-1 downto N_BITS_VECTOR);
-                            z1 <= mul_reg2((N_BITS_VECTOR*2)-1 downto N_BITS_VECTOR);
                         when beta_processing_state =>
                             start_cordic <= '0';
                             if done_cordic = '1' then
                                 current_state <= gamma_start_state;
+                                x2 <= signed_mul(xout_cordic(N_BITS_VECTOR-1 downto 0), CORDIC_SCALING);
                                 y2 <= y1;
-                                mul_reg1 <= xout_cordic(N_BITS_VECTOR-1 downto 0) * CORDIC_SCALING;
-                                mul_reg2 <= yout_cordic(N_BITS_VECTOR-1 downto 0) * CORDIC_SCALING;
+                                z2 <= signed_mul(yout_cordic(N_BITS_VECTOR-1 downto 0), CORDIC_SCALING);
                             end if;
                         
                         -- Gamma states
                         when gamma_start_state =>
-                            xin_cordic <= x2;
-                            yin_cordic <= y2;
                             angle_cordic <= gamma;
                             start_cordic <= '1';
                             current_state <= gamma_processing_state;
-                            x2 <= mul_reg1((N_BITS_VECTOR*2)-1 downto N_BITS_VECTOR);
-                            z2 <= mul_reg2((N_BITS_VECTOR*2)-1 downto N_BITS_VECTOR);
                         when gamma_processing_state =>
                             start_cordic <= '0';
                             if done_cordic = '1' then
                                 current_state <= done_state;
-                                mul_reg1 <= xout_cordic(N_BITS_VECTOR-1 downto 0) * CORDIC_SCALING;
-                                mul_reg2 <= yout_cordic(N_BITS_VECTOR-1 downto 0) * CORDIC_SCALING;
+                                x3 <= signed_mul(xout_cordic(N_BITS_VECTOR-1 downto 0), CORDIC_SCALING);
+                                y3 <= signed_mul(yout_cordic(N_BITS_VECTOR-1 downto 0), CORDIC_SCALING);
                                 z3 <= z2;
                             end if;
 
                         when done_state =>
-                            x3 <= mul_reg1((N_BITS_VECTOR*2)-1 downto N_BITS_VECTOR);
-                            y3 <= mul_reg2((N_BITS_VECTOR*2)-1 downto N_BITS_VECTOR);
                             done <= '1';
                             processing <= '0';
                     end case;
