@@ -15,8 +15,6 @@ entity vector_rotator is
     port(
         -- 2**(N_BITS_VECTOR-1) -->  1
         -- 2**(N_BITS_VECTOR)-1 --> -1
-        -- 1001110000011000100100110111010        --> 1/1.64 (Cordic scaling factor)
-        -- 1001110000011000111110011100001
         -- 2**(N_BITS_ANGLE-1) --> 180
         -- 2**(N_BITS_ANGLE-2) --> 90
         -- 2**(N_BITS_ANGLE-3) --> 45
@@ -79,6 +77,7 @@ architecture vector_rotator_arch of vector_rotator is
     end get_shifted_vector;
 
 	constant N_ITER         : integer := 15;
+    -- 1/1.64 = 0.6097 --> CORDIC scaling factor.
     constant CORDIC_SCALING : signed(N_BITS_VECTOR-1 downto 0) := to_signed(integer((2**(N_BITS_VECTOR-1)) * 0.6097), N_BITS_VECTOR);
 
     -- Start states: Initializes variables to start processing
@@ -140,7 +139,7 @@ begin
                             start_cordic <= '0';
                             if done_cordic = '1' then
                                 current_state <= beta_start_state;
-                                -- TODO: Asumo xin positivo. Contemplar otros casos.
+                                -- TODO: Asumo zin positivo. Contemplar otros casos.
                                 x1 <= signed_mul(xout_cordic, CORDIC_SCALING);
                                 y1 <= signed_mul(yout_cordic, CORDIC_SCALING);
                                 z1 <= '0' & zin;
