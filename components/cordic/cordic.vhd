@@ -44,6 +44,12 @@ architecture cordic_arch of cordic is
             done : out std_logic);
     end component;
 
+    function A2_COMPLEMENT(X : std_logic_vector(N_BITS_VECTOR-1 downto 0))
+    return std_logic_vector is
+    begin
+        return std_logic_vector(resize(unsigned(not X) + to_unsigned(1, X'length), X'length));
+    end A2_COMPLEMENT;
+
     signal beta_adjusted : signed(N_BITS_ANGLE-1 downto 0);
     signal x1_adjusted   : std_logic_vector(N_BITS_VECTOR-1 downto 0);
     signal y1_adjusted   : std_logic_vector(N_BITS_VECTOR-1 downto 0);
@@ -54,14 +60,16 @@ begin
         -- 2**(N_BITS_ANGLE-1) --> 180
         -- 2**(N_BITS_ANGLE-2) --> 90
         -- 2**(N_BITS_ANGLE-3) --> 45
-        if (beta > to_signed(2**(N_BITS_ANGLE-2), N_BITS_ANGLE)) then
+        if (beta > to_signed(2**(N_BITS_ANGLE-2), N_BITS_ANGLE) and
+           (beta < to_signed(2**(N_BITS_ANGLE-1), N_BITS_ANGLE))) then
             beta_adjusted <= beta - to_signed(2**(N_BITS_ANGLE-1), N_BITS_ANGLE);
-            x1_adjusted   <= std_logic_vector(-signed(x1));
-            y1_adjusted   <= std_logic_vector(-signed(y1));
-        elsif (beta < to_signed(-(2**(N_BITS_ANGLE-2)), N_BITS_ANGLE)) then
+            x1_adjusted   <= A2_COMPLEMENT(x1);
+            y1_adjusted   <= A2_COMPLEMENT(y1);
+        elsif (unsigned(beta) > to_unsigned(2**(N_BITS_ANGLE-1), N_BITS_ANGLE) and
+              (unsigned(beta) < to_unsigned(2**(N_BITS_ANGLE-1) + 2**(N_BITS_ANGLE-2), N_BITS_ANGLE))) then
             beta_adjusted <= beta + to_signed(2**(N_BITS_ANGLE-1), N_BITS_ANGLE);
-            x1_adjusted   <= std_logic_vector(-signed(x1));
-            y1_adjusted   <= std_logic_vector(-signed(y1));
+            x1_adjusted   <= A2_COMPLEMENT(x1);
+            y1_adjusted   <= A2_COMPLEMENT(y1);
         else
             beta_adjusted <= beta;
             x1_adjusted   <= x1;
@@ -73,8 +81,8 @@ begin
     generic map(N_BITS_VECTOR, N_BITS_ANGLE, N_ITER)
     port map(
         clk => clk,
-        x1 => x1,
-        y1 => y1,
+        x1 => x1_adjusted,
+        y1 => y1_adjusted,
         beta => beta_adjusted,
         mode => '0', -- Rotation mode only
         start => start,

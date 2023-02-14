@@ -20,7 +20,6 @@ architecture cordic_arch of cordic_tb is
         beta : in signed(N_BITS_ANGLE-1 downto 0);
         -- 0: Rotation mode.
         -- 1: Vectoring mode.
-        mode : in std_logic;
         start: in std_logic;
         x2   : out std_logic_vector(N_BITS_VECTOR downto 0);
         y2   : out std_logic_vector(N_BITS_VECTOR downto 0);
@@ -34,9 +33,9 @@ architecture cordic_arch of cordic_tb is
 
 	signal clk_tb          : std_logic := '0';
 
-    signal x1_tb           : std_logic_vector(N_BITS_VECTOR-1 downto 0) := "111000000000001";
-	signal y1_tb           : std_logic_vector(N_BITS_VECTOR-1 downto 0) := "111000000000001";
-    signal beta_tb         : signed(N_BITS_ANGLE-1 downto 0) := to_signed(72817, N_BITS_ANGLE);
+    signal x1_tb           : std_logic_vector(N_BITS_VECTOR-1 downto 0) := "010000000000000";
+	signal y1_tb           : std_logic_vector(N_BITS_VECTOR-1 downto 0) := "010000000000000";
+    signal beta_tb         : signed(N_BITS_ANGLE-1 downto 0) := to_signed(-72817, N_BITS_ANGLE);
 
     signal x2_tb           : std_logic_vector(N_BITS_VECTOR downto 0);
     signal y2_tb           : std_logic_vector(N_BITS_VECTOR downto 0);
@@ -55,7 +54,6 @@ begin
             x1    => x1_tb,
             y1    => y1_tb,
             beta  => beta_tb,
-            mode  => '0',
             start => start_tb,
             x2    => x2_tb,
             y2    => y2_tb,
