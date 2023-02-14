@@ -36,12 +36,12 @@ architecture vector_rotator_arch of vector_rotator_tb is
 	constant N_BITS_ANGLE : integer := 8;
 
 	signal clk_tb   : std_logic := '0';
-	signal xin_tb    : signed(N_BITS_VECTOR-1 downto 0) := "00100000";
-	signal yin_tb    : signed(N_BITS_VECTOR-1 downto 0) := "00100000";
-	signal zin_tb    : signed(N_BITS_VECTOR-1 downto 0) := "00100000";
-	signal alpha_tb : signed(N_BITS_ANGLE-1 downto 0)  := "00100000";
-	signal beta_tb  : signed(N_BITS_ANGLE-1 downto 0)  := "00000000";
-	signal gamma_tb : signed(N_BITS_ANGLE-1 downto 0)  := "00000000";
+	signal xin_tb    : signed(N_BITS_VECTOR-1 downto 0) := "01101100";
+	signal yin_tb    : signed(N_BITS_VECTOR-1 downto 0) := "01011000";
+	signal zin_tb    : signed(N_BITS_VECTOR-1 downto 0) := "01110011";
+	signal alpha_tb : signed(N_BITS_ANGLE-1 downto 0)  := "00000001";
+	signal beta_tb  : signed(N_BITS_ANGLE-1 downto 0)  := "00000001";
+	signal gamma_tb : signed(N_BITS_ANGLE-1 downto 0)  := "00000001";
 	signal start_tb : std_logic := '0';
 	signal xout_tb    : signed(N_BITS_VECTOR-1 downto 0);
 	signal yout_tb    : signed(N_BITS_VECTOR-1 downto 0);
