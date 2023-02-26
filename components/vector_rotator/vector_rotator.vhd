@@ -13,8 +13,8 @@ entity vector_rotator is
         -- Describes the amount of bits to represent the angle.
         N_BITS_ANGLE : integer := 17);
     port(
-        -- 2**(N_BITS_VECTOR-1) -->  1
-        -- 2**(N_BITS_VECTOR)-1 --> -1
+        -- 2**(N_BITS_VECTOR-2) -->  1
+        -- 2**(N_BITS_VECTOR-1) --> -1
         -- 2**(N_BITS_ANGLE-1) --> 180
         -- 2**(N_BITS_ANGLE-2) --> 90
         -- 2**(N_BITS_ANGLE-3) --> 45
