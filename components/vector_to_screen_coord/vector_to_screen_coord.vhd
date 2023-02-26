@@ -15,28 +15,31 @@ entity vector_to_screen_coord is
         yin   : in signed(N_BITS_VECTOR-1 downto 0);
         zin   : in signed(N_BITS_VECTOR-1 downto 0);
         -- X and Y coordinates of screen pixels.
-        xout  : out unsigned(19-1 downto 0);
-        yout  : out unsigned(19-1 downto 0));
+        coord  : out unsigned(19-1 downto 0));
 
 end;
 
 architecture vector_to_screen_coord_arch of vector_to_screen_coord is
-
+    -- TODO: Safek si esta bien esto, esta rara la cuenta.
+    -- Preguntar al profesor sobre como funcionan las coordenadas, ya que en el pdf la coordenada (1,0) es mas grande que la  (0,-1)
+    -- 153079 - y * 102440 + x * 160
     -- Predefined by screen.
 	constant N_BITS_COORD  : integer := 19;
 
     -- Bits necessary to represent radius with a signed vector.
-    constant N_BITS_RADIUS : integer := 10;
-    constant CIRCLE_RADIUS : signed(N_BITS_RADIUS-1 downto 0) := to_signed(374, N_BITS_RADIUS);
-    -- Scaling constant for vector components.
-    constant COMPONENT_SCALING : signed(N_BITS_VECTOR-1 downto 0) := 
-                                 to_signed(integer(1/(2**(N_BITS_VECTOR-2))), N_BITS_VECTOR);
+    constant ROW_OFFSET    : signed(N_BITS_VECTOR-1 downto 0) := to_signed(153079, N_BITS_VECTOR);
+    constant ROW_SCALE     : signed(N_BITS_VECTOR-1 downto 0) := to_signed(102440, N_BITS_VECTOR);
+    constant COL_OFFSET    : signed(N_BITS_VECTOR-1 downto 0) := to_signed(160, N_BITS_VECTOR);
 
+    signal y_scaled        : signed(N_BITS_VECTOR downto 0);
+    signal y_offseted      : signed(N_BITS_VECTOR downto 0);
+    signal x_scaled        : signed(N_BITS_VECTOR downto 0);
+    signal pre_coord       : signed(N_BITS_VECTOR downto 0);
 
     function signed_mul(a : signed(N_BITS_VECTOR-1 downto 0); b : signed(N_BITS_VECTOR-1 downto 0))
     return signed is
         variable sign_bit : std_logic;
-        variable retval   : signed(N_BITS_VECTOR-1 downto 0);
+        variable retval   : signed(N_BITS_VECTOR downto 0);
         variable aux_mul  : signed(N_BITS_VECTOR*2-1 downto 0);
     begin
         aux_mul := a * b;
@@ -45,25 +48,19 @@ architecture vector_to_screen_coord_arch of vector_to_screen_coord is
         else
             sign_bit := '1';
         end if;
-        -- TODO: Not sure if the following line is ok.
-        retval := sign_bit & aux_mul((N_BITS_VECTOR*2)-3 downto N_BITS_VECTOR-1);
+        retval := sign_bit & aux_mul(N_BITS_VECTOR*2-2 downto N_BITS_VECTOR-1);
         return retval;
     end signed_mul;
 
-    function transform_component_to_coord(x : signed(N_BITS_VECTOR-1 downto 0), y : signed(N_BITS_VECTOR-1 downto 0))
-    return signed is
-        constant BEGIN_X_COORD : integer := 153119; 
-        constant BEGIN_Y_COORD : integer := 255519; 
-        variable scaled_component : signed(N_BITS_VECTOR+N_BITS_RADIUS-1 downto 0);
-        variable coordinate       : unsigned(N_BITS_COORD-1 downto 0);
-    begin
-        scaled_component := signed_mul(yin, COMPONENT_SCALING);
-        coordinate := BEGIN_COORD + (scaled_component + CIRCLE_RADIUS)
-        return aux(aux'length-1 downto aux'length-1-);
-    end transform_component_to_coord;
-
 begin
     -- The rasterization is simple: Ignore X component.
-    xout <= transform_component_to_coord(yin);
-    yout <= transform_component_to_coord(zin);
+    -- TODO: Test if computation is correct.
+    y_scaled <= -signed_mul(yin, ROW_SCALE);
+    y_offseted <=  ROW_OFFSET + y_scaled;
+    x_scaled <= signed_mul(xin, COL_OFFSET);
+    pre_coord <= x_scaled + y_offseted;
+    process(pre_coord)
+    begin
+        coord <= unsigned(pre_coord(N_BITS_VECTOR downto N_BITS_VECTOR-18));
+    end process;
 end;
