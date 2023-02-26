@@ -9,12 +9,11 @@ entity vector_to_screen_coord is
     port(
         -- 2**(N_BITS_VECTOR-2) -->  1
         -- 2**(N_BITS_VECTOR-1) --> -1
-        clk  : in std_logic;
         -- Components of abstract vector.
         xin   : in signed(N_BITS_VECTOR-1 downto 0);
         yin   : in signed(N_BITS_VECTOR-1 downto 0);
         zin   : in signed(N_BITS_VECTOR-1 downto 0);
-        -- X and Y coordinates of screen pixels.
+        -- Coordinates of screen pixel.
         coord  : out unsigned(19-1 downto 0));
 
 end;
@@ -27,40 +26,27 @@ architecture vector_to_screen_coord_arch of vector_to_screen_coord is
 	constant N_BITS_COORD  : integer := 19;
 
     -- Bits necessary to represent radius with a signed vector.
-    constant ROW_OFFSET    : signed(N_BITS_VECTOR-1 downto 0) := to_signed(153079, N_BITS_VECTOR);
-    constant ROW_SCALE     : signed(N_BITS_VECTOR-1 downto 0) := to_signed(102440, N_BITS_VECTOR);
-    constant COL_OFFSET    : signed(N_BITS_VECTOR-1 downto 0) := to_signed(160, N_BITS_VECTOR);
+    constant ROW_OFFSET    : signed(18 downto 0) := to_signed(153079, 19);
+    constant ROW_SCALE     : signed(17 downto 0) := to_signed(102440, 18);
+    constant COL_SCALE    : signed(8 downto 0) := to_signed(160, 9);
 
-    signal y_scaled        : signed(N_BITS_VECTOR downto 0);
-    signal y_offseted      : signed(N_BITS_VECTOR downto 0);
-    signal x_scaled        : signed(N_BITS_VECTOR downto 0);
-    signal pre_coord       : signed(N_BITS_VECTOR downto 0);
-
-    function signed_mul(a : signed(N_BITS_VECTOR-1 downto 0); b : signed(N_BITS_VECTOR-1 downto 0))
-    return signed is
-        variable sign_bit : std_logic;
-        variable retval   : signed(N_BITS_VECTOR downto 0);
-        variable aux_mul  : signed(N_BITS_VECTOR*2-1 downto 0);
-    begin
-        aux_mul := a * b;
-        if (a(a'length-1) = '0' and b(b'length-1) = '0') or (a(a'length-1) = '1' and b(b'length-1) = '1') then
-            sign_bit := '0';
-        else
-            sign_bit := '1';
-        end if;
-        retval := sign_bit & aux_mul(N_BITS_VECTOR*2-2 downto N_BITS_VECTOR-1);
-        return retval;
-    end signed_mul;
+    signal y_scaled_aux    : signed(N_BITS_VECTOR+17 downto 0);
+    signal y_scaled        : signed(18 downto 0);
+    signal x_scaled_aux    : signed(N_BITS_VECTOR+8 downto 0);
+    signal x_scaled        : signed(9 downto 0);
+    signal y_offseted      : signed(18 downto 0);
+    signal pre_coord       : signed(N_BITS_VECTOR-1 downto 0);
 
 begin
     -- The rasterization is simple: Ignore X component.
-    -- TODO: Test if computation is correct.
-    y_scaled <= -signed_mul(yin, ROW_SCALE);
-    y_offseted <=  ROW_OFFSET + y_scaled;
-    x_scaled <= signed_mul(xin, COL_OFFSET);
-    pre_coord <= x_scaled + y_offseted;
+    y_scaled_aux <= -zin * ROW_SCALE;
+    y_scaled <= y_scaled_aux(y_scaled_aux'length-1 downto y_scaled_aux'length-19);
+    y_offseted <=  resize(ROW_OFFSET + y_scaled, 19);
+    x_scaled_aux <= yin * COL_SCALE;
+    x_scaled <= x_scaled_aux(x_scaled_aux'length-1 downto x_scaled_aux'length-10);
+    pre_coord <= resize(x_scaled + y_offseted, N_BITS_VECTOR);
     process(pre_coord)
     begin
-        coord <= unsigned(pre_coord(N_BITS_VECTOR downto N_BITS_VECTOR-18));
+        coord <= resize(unsigned(pre_coord), 19);
     end process;
 end;
