@@ -31,8 +31,8 @@ architecture vga_sync_gen_arch of vga_sync_gen_tb is
 
 begin
 
-    reset_tb <= '0' after 20 ns;
-    clk_tb  <= not clk_tb after 10 ns;
+    reset_tb <= '0' after 10 ps;
+    clk_tb  <= not clk_tb after 5 ps;
 
 	DUT: vga_sync_gen
 		port map(

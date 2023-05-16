@@ -17,7 +17,7 @@ entity vga_sync_gen is
     );
 end vga_sync_gen;
 
-architecture vga_sync_gen_arch of vga_sync is
+architecture vga_sync_gen_arch of vga_sync_gen is
    -- VGA 640-by-480 sync parameters
    constant HD: integer := 640; --horizontal display area
    constant HF: integer := 16 ; --h. front porch
@@ -102,7 +102,7 @@ architecture vga_sync_gen_arch of vga_sync is
          and (v_count_reg<=(VD+VF+VR-1)) else --491
       '0';
    -- video on/off
-   video_on <=
+   vidon <=
       '1' when (h_count_reg<HD) and (v_count_reg<VD) else
       '0';
    -- output signal
