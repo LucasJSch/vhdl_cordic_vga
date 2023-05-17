@@ -7,6 +7,8 @@ entity vga_pixel_gen is
       clk: in std_logic;
       -- pixel_x: horizontal address
       -- pixel_y: vertical address
+      -- For this project's purposes, we don't use them.
+      -- But there are implementations in which it is needed.
       pixel_x, pixel_y: in std_logic_vector (9 downto 0);
       -- vidon: Enables writing pixels to the screen.
       vidon: in std_logic;
