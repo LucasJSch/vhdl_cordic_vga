@@ -34,7 +34,7 @@ architecture cordic_arch of cordic_tb is
 	signal clk_tb          : std_logic := '0';
 
     signal x1_tb           : std_logic_vector(N_BITS_VECTOR-1 downto 0) := "010000000000000";
-	signal y1_tb           : std_logic_vector(N_BITS_VECTOR-1 downto 0) := "010000000000000";
+	signal y1_tb           : std_logic_vector(N_BITS_VECTOR-1 downto 0) := "100011100000000";
     signal beta_tb         : signed(N_BITS_ANGLE-1 downto 0) := to_signed(-72817, N_BITS_ANGLE);
 
     signal x2_tb           : std_logic_vector(N_BITS_VECTOR downto 0);
