@@ -55,7 +55,7 @@ architecture cordic_arch of cordic is
     signal y1_adjusted   : std_logic_vector(N_BITS_VECTOR-1 downto 0);
 
 begin
-    process(beta)
+    process(beta,x1,y1)
     begin
         -- 2**(N_BITS_ANGLE-1) --> 180
         -- 2**(N_BITS_ANGLE-2) --> 90
