@@ -95,6 +95,9 @@ architecture vector_rotator_arch of vector_rotator is
     signal current_state : state_t := start_state;
 
     signal start_cordic : std_logic := '0';
+    -- Used to not depend on rising_edge of start_cordic, but also not depend only on current state of start_cordic.
+    -- I.e. only depend on if start_cordic w.r.t. previous clock signal.
+    signal start_history : std_logic := '0';
     signal done_cordic  : std_logic := '0';
     signal angle_cordic : signed(N_BITS_ANGLE-1 downto 0);
     signal xin_cordic   : signed(N_BITS_VECTOR-1 downto 0) := (others => '0');
@@ -119,8 +122,11 @@ begin
         process(clk, start)
         begin
             if rising_edge(clk) then
-                if start = '1' then
+                if start = '1' and start_history = '0' then
                     current_state <= start_state;
+                    start_history <= '1';
+                elsif start = '0' and start_history='1' then
+                    start_history <= '0';
                 else
                     case current_state is
                         when start_state =>
