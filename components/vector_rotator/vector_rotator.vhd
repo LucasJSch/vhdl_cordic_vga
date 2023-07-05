@@ -123,13 +123,19 @@ begin
         begin
             if rising_edge(start) then
                 done <= '0';
+                xin_cordic <= (others => '0');
+                yin_cordic <= (others => '0');
+                x1 <= (others => '0');
+                y1 <= (others => '0');
+                z1 <= (others => '0');
+                x2 <= (others => '0');
+                y2 <= (others => '0');
+                z2 <= (others => '0');
+                x3 <= (others => '0');
+                y3 <= (others => '0');
+                z3 <= (others => '0');
             end if;
             if rising_edge(clk) then
-                --if start = '1' and start_history = '0' then
-                --    current_state <= start_state;
-                --    start_history <= '1';
-                --elsif start = '0' and start_history='1' then
-                --    start_history <= '0';
                 if start = '1' then
                     current_state <= start_state;
                 else

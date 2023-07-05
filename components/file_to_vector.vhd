@@ -49,7 +49,7 @@ architecture file_to_vector_arch of file_to_vector is
 	signal zi_tb: signed(N_BITS_VECTOR-1 downto 0);
 
 	signal counter : unsigned(N_BITS_VECTOR downto 0) := (others => '0');
-	signal alpha_tb : signed(N_BITS_ANGLE-1 downto 0) := "01000000";
+	signal alpha_tb : signed(N_BITS_ANGLE-1 downto 0) := "00011101";
 	signal start_vec_rot : std_logic := '0';
 	signal vec_rot_done : std_logic;
 	
@@ -62,11 +62,8 @@ architecture file_to_vector_arch of file_to_vector is
                      ready_to_begin_rotate_vec_state,
                      start_rotate_vec_state,
                      wait_rotate_vec_state,
-                     saving_data_state,
                      endfile_state);
     signal current_state : state_t := uninitialized_state;
-
-    signal state : std_logic_vector(2 downto 0) := (others => '0');
 
 begin
 	clk_tb        <= not clk_tb after 10 ns;
@@ -82,7 +79,6 @@ begin
                 when uninitialized_state =>
                     current_state <= read_vec_state;
                 when read_vec_state =>
-                    state <= "001";
                     if endfile(data_file) then
                         current_state <= endfile_state;
                     else
@@ -102,23 +98,16 @@ begin
                         current_state <= ready_to_begin_rotate_vec_state;
                     end if;
                 when ready_to_begin_rotate_vec_state =>
-                    state <= "010";
                     current_state <= start_rotate_vec_state;
                 when start_rotate_vec_state =>
-                    state <= "011";
                     start_vec_rot <= '1';
                     current_state <= wait_rotate_vec_state;
                 when wait_rotate_vec_state =>
-                    state <= "100";
                     start_vec_rot <= '0';
                     if vec_rot_done = '1' then
-                        current_state <= saving_data_state;
+                        current_state <= read_vec_state;
                     end if;
-                when saving_data_state =>
-                    state <= "101";
-                    current_state <= read_vec_state;
                 when endfile_state =>
-                    state <= "111";
                     null;
             end case;
         end if;
