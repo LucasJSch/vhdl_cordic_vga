@@ -51,7 +51,7 @@ architecture vector_rotator_arch of vector_rotator_tb is
 begin
 
     clk_tb  <= not clk_tb after 10 ns;
-    start_tb <= '1' after 20 ns, '0' after 30 ns;
+    start_tb <= '1' after 29 ns, '0' after 31 ns;
 
 	DUT: vector_rotator
 		generic map(N_BITS_VECTOR, N_BITS_ANGLE)

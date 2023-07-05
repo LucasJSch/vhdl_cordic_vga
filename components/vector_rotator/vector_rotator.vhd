@@ -83,7 +83,7 @@ architecture vector_rotator_arch of vector_rotator is
     -- Start states: Initializes variables to start processing
     -- Processing states: Checks if the processing is done
                     -- TODO: Add uninitialized_state logic to avoid computing when starting the simulation.
-	type state_t is (--uninitialized_state,
+	type state_t is (uninitialized_state,
                      start_state,
                      alpha_start_state,
                      alpha_processing_state,
@@ -92,7 +92,7 @@ architecture vector_rotator_arch of vector_rotator is
                      gamma_start_state,
                      gamma_processing_state,
                      done_state);
-    signal current_state : state_t := start_state;
+    signal current_state : state_t := uninitialized_state;
 
     signal start_cordic : std_logic := '0';
     -- Used to not depend on rising_edge of start_cordic, but also not depend only on current state of start_cordic.
@@ -121,14 +121,21 @@ begin
 
         process(clk, start)
         begin
+            if rising_edge(start) then
+                done <= '0';
+            end if;
             if rising_edge(clk) then
-                if start = '1' and start_history = '0' then
+                --if start = '1' and start_history = '0' then
+                --    current_state <= start_state;
+                --    start_history <= '1';
+                --elsif start = '0' and start_history='1' then
+                --    start_history <= '0';
+                if start = '1' then
                     current_state <= start_state;
-                    start_history <= '1';
-                elsif start = '0' and start_history='1' then
-                    start_history <= '0';
                 else
                     case current_state is
+                        when uninitialized_state =>
+                            null;
                         when start_state =>
                             start_cordic <= '0';
                             processing <= '0';
