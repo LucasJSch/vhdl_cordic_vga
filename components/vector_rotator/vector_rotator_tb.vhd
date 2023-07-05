@@ -32,16 +32,16 @@ architecture vector_rotator_arch of vector_rotator_tb is
         done  : out std_logic);
     end component;
 
-	constant N_BITS_VECTOR : integer := 8;
-	constant N_BITS_ANGLE : integer := 8;
+	constant N_BITS_VECTOR : integer := 17;
+	constant N_BITS_ANGLE : integer := 16;
 
 	signal clk_tb   : std_logic := '0';
-	signal xin_tb    : signed(N_BITS_VECTOR-1 downto 0) := "01000000";
-	signal yin_tb    : signed(N_BITS_VECTOR-1 downto 0) := "01000000";
-	signal zin_tb    : signed(N_BITS_VECTOR-1 downto 0) := "01000000";
-	signal alpha_tb : signed(N_BITS_ANGLE-1 downto 0)  := "00010000";
-	signal beta_tb  : signed(N_BITS_ANGLE-1 downto 0)  := "00010000";
-	signal gamma_tb : signed(N_BITS_ANGLE-1 downto 0)  := "00010000";
+	signal xin_tb    : signed(N_BITS_VECTOR-1 downto 0) := to_signed(-24772, N_BITS_VECTOR);
+	signal yin_tb    : signed(N_BITS_VECTOR-1 downto 0) := to_signed(-28497, N_BITS_VECTOR);
+	signal zin_tb    : signed(N_BITS_VECTOR-1 downto 0) := to_signed(53564, N_BITS_VECTOR);
+	signal alpha_tb : signed(N_BITS_ANGLE-1 downto 0)  := to_signed(-24772, N_BITS_ANGLE);
+	signal beta_tb  : signed(N_BITS_ANGLE-1 downto 0)  := to_signed(-24772, N_BITS_ANGLE);
+	signal gamma_tb : signed(N_BITS_ANGLE-1 downto 0)  := to_signed(-24772, N_BITS_ANGLE);
 	signal start_tb : std_logic := '0';
 	signal xout_tb    : signed(N_BITS_VECTOR downto 0);
 	signal yout_tb    : signed(N_BITS_VECTOR downto 0);
