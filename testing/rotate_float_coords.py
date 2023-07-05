@@ -2,57 +2,41 @@ import csv
 import io
 import math
 import random
+from scipy.spatial.transform import Rotation as R
+import numpy as np
 
 BASE_PATH = "/home/ljsch/FIUBA/SisDig/repo_TP_final/vhdl_cordic_vga/testing/"
-INPUT_FILE_PATH = BASE_PATH + "float_coordenadas.txt"
 OUTPUT_FILE_PATH = BASE_PATH + "float_coordenadas_test.txt"
 output = io.StringIO()
-output.write("alpha,beta,gamma,x_i,y_i,z_i,x_o,y_o,z_o")
+output.write("alpha,beta,gamma,x_i,y_i,z_i,x_o,y_o,z_o\n")
 
-def x_rotation(angle, x, y, z):
-    y = math.cos(angle)*y - math.sin(angle)*z
-    z = math.sin(angle)*y + math.cos(angle)*z
-    return [x,y,z]
-
-def y_rotation(angle, x, y, z):
-    x = math.cos(angle)*x + math.sin(angle)*z
-    z = -math.sin(angle)*x + math.cos(angle)*z
-    return [x,y,z]
-
-def z_rotation(angle, x, y, z):
-    x = math.cos(angle)*x - math.sin(angle)*y
-    y = math.sin(angle)*x + math.cos(angle)*y
-    return [x,y,z]
-
-def angle_to_binary(angle):
-    pi_rep_in_vhd = 2**8
-    # Get binary representation in string, without the '0b' initial chars
-    #return bin(round(pi_rep_in_vhd * angle / math.pi))[2:]
-    return round(pi_rep_in_vhd * angle / math.pi)
+def transform(gamma, beta, alpha, vector):
+    r_z = R.from_euler('z', gamma, degrees=True)
+    r_y = R.from_euler('y', beta, degrees=True)
+    r_x = R.from_euler('x', alpha, degrees=True)
+    return r_z.apply(r_y.apply(r_x.apply(vector)))
 
 def round_vector(x,y,z):
     return round(x), round(y), round(z)
 
-with open(INPUT_FILE_PATH, newline='') as f_input:
-    reader = csv.reader(f_input, delimiter=',')
-    for row in reader:
-        # Radians
-        alpha = (random.uniform(0, 1)) * math.pi
-        beta =  (random.uniform(0, 1)) * math.pi
-        gamma = (random.uniform(0, 1)) * math.pi
-        x_o = x = int(row[0])
-        y_o = y = int(row[1])
-        z_o = z = int(row[2])
-        x_o, y_o, z_o = round_vector(x_o, y_o, z_o)
-        x_o,y_o,z_o = z_rotation(gamma, x_o,y_o,z_o)
-        x_o, y_o, z_o = round_vector(x_o, y_o, z_o)
-        x_o,y_o,z_o = y_rotation(beta,  x_o,y_o,z_o)
-        x_o, y_o, z_o = round_vector(x_o, y_o, z_o)
-        x_o,y_o,z_o = x_rotation(alpha, x_o,y_o,z_o)
-        x_o, y_o, z_o = round_vector(x_o, y_o, z_o)
 
-        aux = str(angle_to_binary(alpha)) + "," + str(angle_to_binary(beta)) + "," + str(angle_to_binary(gamma)) + "," + str(x) + "," + str(y) + "," + str(z) + "," + str(round(x_o)) + "," + str(round(y_o)) + "," + str(round(z_o)) + "\n"
-        output.write(aux)
+N_BITS_VECTOR = 15
+N_samples = 1000
+ONE_REP = 2 ** (N_BITS_VECTOR-1)
+
+for _ in range(N_samples):
+    # Degrees
+    alpha = round((random.uniform(-1, 1)) * 90)
+    beta =  round((random.uniform(-1, 1)) * 90)
+    gamma = round((random.uniform(-1, 1)) * 90)
+    x = round((random.uniform(0, 1)) * ONE_REP)
+    y = round((random.uniform(0, 1)) * ONE_REP)
+    z = round((random.uniform(0, 1)) * ONE_REP)
+    x_o,y_o,z_o = transform(gamma, beta, alpha, [x,y,z])
+    x_o,y_o,z_o = round_vector(x_o,y_o,z_o)
+
+    aux = str(alpha) + "," + str(beta) + "," + str(gamma) + "," + str(x) + "," + str(y) + "," + str(z) + "," + str(x_o) + "," + str(y_o) + "," + str(z_o) + "\n"
+    output.write(aux)
 
 with open(OUTPUT_FILE_PATH, mode='w') as f_output:
     print(output.getvalue(), file=f_output)
