@@ -30,6 +30,9 @@ def angle_to_binary(angle):
     #return bin(round(pi_rep_in_vhd * angle / math.pi))[2:]
     return round(pi_rep_in_vhd * angle / math.pi)
 
+def round_vector(x,y,z):
+    return round(x), round(y), round(z)
+
 with open(INPUT_FILE_PATH, newline='') as f_input:
     reader = csv.reader(f_input, delimiter=',')
     for row in reader:
@@ -40,9 +43,13 @@ with open(INPUT_FILE_PATH, newline='') as f_input:
         x_o = x = int(row[0])
         y_o = y = int(row[1])
         z_o = z = int(row[2])
+        x_o, y_o, z_o = round_vector(x_o, y_o, z_o)
         x_o,y_o,z_o = z_rotation(gamma, x_o,y_o,z_o)
+        x_o, y_o, z_o = round_vector(x_o, y_o, z_o)
         x_o,y_o,z_o = y_rotation(beta,  x_o,y_o,z_o)
+        x_o, y_o, z_o = round_vector(x_o, y_o, z_o)
         x_o,y_o,z_o = x_rotation(alpha, x_o,y_o,z_o)
+        x_o, y_o, z_o = round_vector(x_o, y_o, z_o)
 
         aux = str(angle_to_binary(alpha)) + "," + str(angle_to_binary(beta)) + "," + str(angle_to_binary(gamma)) + "," + str(x) + "," + str(y) + "," + str(z) + "," + str(round(x_o)) + "," + str(round(y_o)) + "," + str(round(z_o)) + "\n"
         output.write(aux)
