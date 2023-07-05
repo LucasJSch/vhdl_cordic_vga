@@ -33,8 +33,23 @@ architecture file_to_vector_arch of file_to_vector is
 		done  : out std_logic);
 	end component;
 
+    component rotator is
+        generic (
+            N_BITS_VECTOR            : integer := 10;
+            N_BITS_ANGLE    : integer := 10;
+            N_ITER                  : integer := 16
+        );
+        port (
+            clk                         :   in std_logic;
+            X0, Y0, Z0                  :   in signed(N_BITS_VECTOR-1 downto 0);
+            angle_X, angle_Y, angle_Z   :   in signed(N_BITS_ANGLE-1 downto 0);
+            X, Y, Z                     :   out signed(N_BITS_VECTOR-1 downto 0)
+        );
+    
+    end component;
+
 	constant N_BITS_VECTOR : integer := 17;
-	constant N_BITS_ANGLE : integer := 8;
+	constant N_BITS_ANGLE : integer := 10;
 
     -- Bits tolerance to verify correctness of result.
     constant TOLERANCE     : signed := to_signed(300, N_BITS_VECTOR+1);
@@ -59,12 +74,11 @@ architecture file_to_vector_arch of file_to_vector is
 	signal errors_counter_y : unsigned(N_BITS_VECTOR downto 0) := (others => '0');
 	signal errors_counter_z : unsigned(N_BITS_VECTOR downto 0) := (others => '0');
 
-	signal start_vec_rot : std_logic := '0';
-	signal vec_rot_done : std_logic;
+	signal iter_count : unsigned(3 downto 0) := (others => '0');
 	
-	signal xout_tb    : signed(N_BITS_VECTOR downto 0);
-	signal yout_tb    : signed(N_BITS_VECTOR downto 0);
-	signal zout_tb    : signed(N_BITS_VECTOR downto 0);
+	signal xout_tb    : signed(N_BITS_VECTOR-1 downto 0);
+	signal yout_tb    : signed(N_BITS_VECTOR-1 downto 0);
+	signal zout_tb    : signed(N_BITS_VECTOR-1 downto 0);
 
     type state_t is (uninitialized_state,
                      read_vec_state,
@@ -76,8 +90,7 @@ architecture file_to_vector_arch of file_to_vector is
     signal current_state : state_t := uninitialized_state;
 
 begin
-	clk_tb        <= not clk_tb after 10 ns;
-    --current_state <= read_vec_state after 11 ns;
+	clk_tb        <= not clk_tb after 1 ns;
 
 	test_sequence: process(clk_tb)
 		variable l: line;
@@ -134,14 +147,14 @@ begin
                 when ready_to_begin_rotate_vec_state =>
                     current_state <= start_rotate_vec_state;
                 when start_rotate_vec_state =>
-                    start_vec_rot <= '1';
                     current_state <= wait_rotate_vec_state;
                 when wait_rotate_vec_state =>
-                    start_vec_rot <= '0';
-                    if vec_rot_done = '1' then
+                    iter_count <= iter_count + 1;
+                    if iter_count = to_unsigned(15, 4) then
                         current_state <= evaluate_errors_state;
                     end if;
                 when evaluate_errors_state =>
+                        iter_count <= (others => '0');
                         if (abs(xo_file - xout_tb) > TOLERANCE) then
                             errors_counter_x <= errors_counter_x + 1;
                         end if;
@@ -158,21 +171,19 @@ begin
         end if;
     end process;
 
-    vec_rotator : vector_rotator
+    DUT: rotator
     generic map(N_BITS_VECTOR, N_BITS_ANGLE)
     port map(
         clk   => clk_tb,
-        xin    => xi_file,
-        yin    => yi_file,
-        zin    => zi_file,
-        alpha => alpha_file,
-        beta  => beta_file,
-        gamma => gamma_file,
-        start => start_vec_rot,
-        xout  => xout_tb,
-        yout  => yout_tb,
-        zout  => zout_tb,
-        done  => vec_rot_done);
+        x0    => xi_file,
+        y0    => yi_file,
+        z0    => zi_file,
+        angle_x  => alpha_file,
+        angle_y  => beta_file,
+        angle_z  => gamma_file,
+        x    => xout_tb,
+        y    => yout_tb,
+        z    => zout_tb);
 
     
 

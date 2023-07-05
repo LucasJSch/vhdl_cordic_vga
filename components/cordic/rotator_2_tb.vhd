@@ -21,29 +21,25 @@ architecture rotator_arch of rotator_tb is
     
     end component;
 
-	constant N_BITS_VECTOR : integer := 18;
+	constant N_BITS_VECTOR : integer := 17;
 	constant N_BITS_ANGLE  : integer := 10;
 	constant N_ITER        : integer := 15;
 
 	signal clk_tb          : std_logic := '0';
 
-    signal x0_tb           : signed(N_BITS_VECTOR-1 downto 0) := to_signed(-24772, N_BITS_VECTOR);
-	signal y0_tb           : signed(N_BITS_VECTOR-1 downto 0) := to_signed(-28497, N_BITS_VECTOR);
-	signal z0_tb           : signed(N_BITS_VECTOR-1 downto 0) := to_signed(10, N_BITS_VECTOR);
+    signal x0_tb           : signed(N_BITS_VECTOR-1 downto 0) := to_signed(19381, N_BITS_VECTOR);
+	signal y0_tb           : signed(N_BITS_VECTOR-1 downto 0) := to_signed(47755, N_BITS_VECTOR);
+	signal z0_tb           : signed(N_BITS_VECTOR-1 downto 0) := to_signed(4803, N_BITS_VECTOR);
 
-    signal angle_X_tb         : signed(N_BITS_ANGLE-1 downto 0) := (others=>'0');
-    signal angle_Y_tb         : signed(N_BITS_ANGLE-1 downto 0) := (others=>'0');
-    signal angle_Z_tb         : signed(N_BITS_ANGLE-1 downto 0) := to_signed(159, N_BITS_ANGLE); --159 grados
+    signal angle_X_tb         : signed(N_BITS_ANGLE-1 downto 0) := to_signed(166, N_BITS_ANGLE);
+    signal angle_Y_tb         : signed(N_BITS_ANGLE-1 downto 0) := to_signed(70, N_BITS_ANGLE);
+    signal angle_Z_tb         : signed(N_BITS_ANGLE-1 downto 0) := to_signed(99, N_BITS_ANGLE);
 
     signal x_tb           : signed(N_BITS_VECTOR-1 downto 0);
     signal y_tb           : signed(N_BITS_VECTOR-1 downto 0);
     signal z_tb           : signed(N_BITS_VECTOR-1 downto 0);
-    signal done_tb        : std_logic;
-    signal start_tb       : std_logic := '0';
 
 begin
-
-    start_tb <= '1' after 5 ns;
     clk_tb <= not clk_tb after 10 ns;
 
 	DUT: rotator
