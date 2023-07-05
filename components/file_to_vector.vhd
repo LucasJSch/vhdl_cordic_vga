@@ -37,19 +37,28 @@ architecture file_to_vector_arch of file_to_vector is
 	constant N_BITS_ANGLE : integer := 8;
 
     -- Bits tolerance to verify correctness of result.
-    constant TOLERANCE     : signed := to_signed(10, N_BITS_VECTOR+1);
+    constant TOLERANCE     : signed := to_signed(300, N_BITS_VECTOR+1);
 	
     -- Remember to remove header line from file, if present.
-	file data_file : text open read_mode is "/home/ljsch/FIUBA/SisDig/repo_TP_final/vhdl_cordic_vga/testing/float_coordenadas.txt";
+	file data_file : text open read_mode is "/home/ljsch/FIUBA/SisDig/repo_TP_final/vhdl_cordic_vga/testing/float_coordenadas_test.txt";
 
 	signal clk_tb : std_logic := '0';
 
-	signal xi_tb: signed(N_BITS_VECTOR-1 downto 0);
-	signal yi_tb: signed(N_BITS_VECTOR-1 downto 0);
-	signal zi_tb: signed(N_BITS_VECTOR-1 downto 0);
+    signal alpha_file : signed(N_BITS_ANGLE-1 downto 0);
+    signal beta_file  : signed(N_BITS_ANGLE-1 downto 0);
+    signal gamma_file : signed(N_BITS_ANGLE-1 downto 0);
+	signal xi_file: signed(N_BITS_VECTOR-1 downto 0);
+	signal yi_file: signed(N_BITS_VECTOR-1 downto 0);
+	signal zi_file: signed(N_BITS_VECTOR-1 downto 0);
+	signal xo_file: signed(N_BITS_VECTOR-1 downto 0);
+	signal yo_file: signed(N_BITS_VECTOR-1 downto 0);
+	signal zo_file: signed(N_BITS_VECTOR-1 downto 0);
 
-	signal counter : unsigned(N_BITS_VECTOR downto 0) := (others => '0');
-	signal alpha_tb : signed(N_BITS_ANGLE-1 downto 0) := "00011101";
+	signal line_counter   : unsigned(N_BITS_VECTOR downto 0) := (others => '0');
+	signal errors_counter_x : unsigned(N_BITS_VECTOR downto 0) := (others => '0');
+	signal errors_counter_y : unsigned(N_BITS_VECTOR downto 0) := (others => '0');
+	signal errors_counter_z : unsigned(N_BITS_VECTOR downto 0) := (others => '0');
+
 	signal start_vec_rot : std_logic := '0';
 	signal vec_rot_done : std_logic;
 	
@@ -62,6 +71,7 @@ architecture file_to_vector_arch of file_to_vector is
                      ready_to_begin_rotate_vec_state,
                      start_rotate_vec_state,
                      wait_rotate_vec_state,
+                     evaluate_errors_state,
                      endfile_state);
     signal current_state : state_t := uninitialized_state;
 
@@ -85,16 +95,40 @@ begin
                         readline(data_file, l);
                         read(l, aux);
 
-                        xi_tb <= to_signed(aux, N_BITS_VECTOR);
+                        alpha_file <= to_signed(aux, N_BITS_ANGLE);
                         read(l, ch);
                         read(l, aux);
 
-                        yi_tb <= to_signed(aux, N_BITS_VECTOR);
+                        beta_file <= to_signed(aux, N_BITS_ANGLE);
                         read(l, ch);
                         read(l, aux);
 
-                        zi_tb <= to_signed(aux, N_BITS_VECTOR);
-                        counter <= counter + 1;
+                        gamma_file <= to_signed(aux, N_BITS_ANGLE);
+                        read(l, ch);
+                        read(l, aux);
+
+                        xi_file <= to_signed(aux, N_BITS_VECTOR);
+                        read(l, ch);
+                        read(l, aux);
+
+                        yi_file <= to_signed(aux, N_BITS_VECTOR);
+                        read(l, ch);
+                        read(l, aux);
+
+                        zi_file <= to_signed(aux, N_BITS_VECTOR);
+                        read(l, ch);
+                        read(l, aux);
+
+                        xo_file <= to_signed(aux, N_BITS_VECTOR);
+                        read(l, ch);
+                        read(l, aux);
+
+                        yo_file <= to_signed(aux, N_BITS_VECTOR);
+                        read(l, ch);
+                        read(l, aux);
+
+                        zo_file <= to_signed(aux, N_BITS_VECTOR);
+                        line_counter <= line_counter + 1;
                         current_state <= ready_to_begin_rotate_vec_state;
                     end if;
                 when ready_to_begin_rotate_vec_state =>
@@ -105,8 +139,19 @@ begin
                 when wait_rotate_vec_state =>
                     start_vec_rot <= '0';
                     if vec_rot_done = '1' then
-                        current_state <= read_vec_state;
+                        current_state <= evaluate_errors_state;
                     end if;
+                when evaluate_errors_state =>
+                        if (abs(xo_file - xout_tb) > TOLERANCE) then
+                            errors_counter_x <= errors_counter_x + 1;
+                        end if;
+                        if (abs(yo_file - yout_tb) > TOLERANCE) then
+                            errors_counter_y <= errors_counter_y + 1;
+                        end if;
+                        if (abs(zo_file - zout_tb) > TOLERANCE) then
+                            errors_counter_z <= errors_counter_z + 1;
+                        end if;
+                    current_state <= read_vec_state;
                 when endfile_state =>
                     null;
             end case;
@@ -117,12 +162,12 @@ begin
     generic map(N_BITS_VECTOR, N_BITS_ANGLE)
     port map(
         clk   => clk_tb,
-        xin    => xi_tb,
-        yin    => yi_tb,
-        zin    => zi_tb,
-        alpha => alpha_tb,
-        beta  => alpha_tb,
-        gamma => alpha_tb,
+        xin    => xi_file,
+        yin    => yi_file,
+        zin    => zi_file,
+        alpha => alpha_file,
+        beta  => beta_file,
+        gamma => gamma_file,
         start => start_vec_rot,
         xout  => xout_tb,
         yout  => yout_tb,
