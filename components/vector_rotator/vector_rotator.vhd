@@ -82,7 +82,9 @@ architecture vector_rotator_arch of vector_rotator is
 
     -- Start states: Initializes variables to start processing
     -- Processing states: Checks if the processing is done
-	type state_t is (start_state,
+                    -- TODO: Add uninitialized_state logic to avoid computing when starting the simulation.
+	type state_t is (--uninitialized_state,
+                     start_state,
                      alpha_start_state,
                      alpha_processing_state,
                      beta_start_state,
