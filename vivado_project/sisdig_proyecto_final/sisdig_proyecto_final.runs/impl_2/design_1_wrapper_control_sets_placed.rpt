@@ -1,0 +1,95 @@
+Copyright 1986-2018 Xilinx, Inc. All Rights Reserved.
+---------------------------------------------------------------------------------------------
+| Tool Version : Vivado v.2018.3 (lin64) Build 2405991 Thu Dec  6 23:36:41 MST 2018
+| Date         : Thu Aug 17 00:18:02 2023
+| Host         : ljsch-IdeaPad-3-15IML05 running 64-bit Ubuntu 20.04.6 LTS
+| Command      : report_control_sets -verbose -file design_1_wrapper_control_sets_placed.rpt
+| Design       : design_1_wrapper
+| Device       : xc7z020
+---------------------------------------------------------------------------------------------
+
+Control Set Information
+
+Table of Contents
+-----------------
+1. Summary
+2. Histogram
+3. Flip-Flop Distribution
+4. Detailed Control Set Information
+
+1. Summary
+----------
+
++----------------------------------------------------------+-------+
+|                          Status                          | Count |
++----------------------------------------------------------+-------+
+| Number of unique control sets                            |    23 |
+| Unused register locations in slices containing registers |    67 |
++----------------------------------------------------------+-------+
+
+
+2. Histogram
+------------
+
++--------+--------------+
+| Fanout | Control Sets |
++--------+--------------+
+|      2 |            1 |
+|      4 |            1 |
+|      6 |            1 |
+|      7 |            1 |
+|      8 |            3 |
+|      9 |            1 |
+|     10 |            2 |
+|     15 |            1 |
+|    16+ |           12 |
++--------+--------------+
+
+
+3. Flip-Flop Distribution
+-------------------------
+
++--------------+-----------------------+------------------------+-----------------+--------------+
+| Clock Enable | Synchronous Set/Reset | Asynchronous Set/Reset | Total Registers | Total Slices |
++--------------+-----------------------+------------------------+-----------------+--------------+
+| No           | No                    | No                     |             129 |           57 |
+| No           | No                    | Yes                    |              21 |            9 |
+| No           | Yes                   | No                     |              98 |           25 |
+| Yes          | No                    | No                     |              69 |           31 |
+| Yes          | No                    | Yes                    |               0 |            0 |
+| Yes          | Yes                   | No                     |             112 |           34 |
++--------------+-----------------------+------------------------+-----------------+--------------+
+
+
+4. Detailed Control Set Information
+-----------------------------------
+
++-------------------------------------+-----------------------------------------------------+--------------------------------------------------------+------------------+----------------+
+|             Clock Signal            |                    Enable Signal                    |                    Set/Reset Signal                    | Slice Load Count | Bel Load Count |
++-------------------------------------+-----------------------------------------------------+--------------------------------------------------------+------------------+----------------+
+|  design_1_i/clk_wiz_0/inst/clk_out1 | design_1_i/main_0/U0/angle_x_rotator[2]_i_2_n_0     | design_1_i/main_0/U0/angle_x_rotator[2]_i_1_n_0        |                1 |              2 |
+|  design_1_i/clk_wiz_0/inst/clk_out1 | design_1_i/main_0/U0/angle_y_rotator[9]_i_2_n_0     | design_1_i/main_0/U0/angle_y_rotator[9]_i_1_n_0        |                1 |              4 |
+|  design_1_i/clk_wiz_0/inst/clk_out1 | design_1_i/main_0/U0/angle_y_rotator[7]_i_2_n_0     | design_1_i/main_0/U0/angle_y_rotator[7]_i_1_n_0        |                3 |              6 |
+|  design_1_i/clk_wiz_0/inst/clk_out1 | design_1_i/main_0/U0/angle_x_rotator[9]_i_2_n_0     | design_1_i/main_0/U0/angle_x_rotator[9]_i_1_n_0        |                3 |              7 |
+|  design_1_i/clk_wiz_0/inst/clk_out1 | design_1_i/main_0/U0/z_coord_current0               |                                                        |                5 |              8 |
+|  design_1_i/clk_wiz_0/inst/clk_out1 | design_1_i/main_0/U0/x_coord_current0               |                                                        |                3 |              8 |
+|  design_1_i/clk_wiz_0/inst/clk_out1 | design_1_i/main_0/U0/y_coord_current0               |                                                        |                6 |              8 |
+|  design_1_i/clk_wiz_0/inst/clk_out1 | design_1_i/main_0/U0/angle_z_rotator                |                                                        |                4 |              9 |
+|  design_1_i/clk_wiz_0/inst/clk_out1 | design_1_i/main_0/U0/vga_control_inst/clkdiv_flag   |                                                        |                4 |             10 |
+|  design_1_i/clk_wiz_0/inst/clk_out1 | design_1_i/main_0/U0/vga_control_inst/vc[9]_i_1_n_0 |                                                        |                5 |             10 |
+|  design_1_i/clk_wiz_0/inst/clk_out1 | design_1_i/main_0/U0/sram_address_current0          | design_1_i/main_0/U0/sram_address_current[14]_i_1_n_0  |                5 |             15 |
+|  design_1_i/clk_wiz_0/inst/clk_out1 | design_1_i/main_0/U0/addr_wr0                       | design_1_i/main_0/U0/vram_addr_wr_current[15]_i_1_n_0  |                4 |             16 |
+|  design_1_i/clk_wiz_0/inst/clk_out1 | design_1_i/main_0/U0/vram_addr_wr_pointer_current0  |                                                        |                4 |             16 |
+|  design_1_i/clk_wiz_0/inst/clk_out1 |                                                     | design_1_i/main_0/U0/btn_x1_cycles_pressed[1]_i_1_n_0  |                5 |             19 |
+|  design_1_i/clk_wiz_0/inst/clk_out1 |                                                     | design_1_i/main_0/U0/btn_x2_cycles_pressed[19]_i_1_n_0 |                5 |             19 |
+|  design_1_i/clk_wiz_0/inst/clk_out1 |                                                     | design_1_i/main_0/U0/clear                             |                5 |             20 |
+|  design_1_i/clk_wiz_0/inst/clk_out1 |                                                     | design_1_i/main_0/U0/btn_y2_cycles_pressed[0]_i_1_n_0  |                5 |             20 |
+|  design_1_i/clk_wiz_0/inst/clk_out1 |                                                     | design_1_i/main_0/U0/btn_y1_cycles_pressed[0]_i_1_n_0  |                5 |             20 |
+|  design_1_i/clk_wiz_0/inst/clk_out1 |                                                     | design_1_i/main_0/U0/video_driver_inst/AS[0]           |                9 |             21 |
+|  design_1_i/clk_wiz_0/inst/clk_out1 |                                                     |                                                        |               17 |             24 |
+|  design_1_i/clk_wiz_0/inst/clk_out1 | design_1_i/main_0/U0/xyz_selector_current0          | design_1_i/main_0/U0/xyz_selector_current[30]_i_1_n_0  |                9 |             31 |
+|  design_1_i/clk_wiz_0/inst/clk_out1 | design_1_i/main_0/U0/cycles_current0                | design_1_i/main_0/U0/cycles_current[30]_i_1_n_0        |                8 |             31 |
+|  clk_IBUF_BUFG                      |                                                     |                                                        |               40 |            105 |
++-------------------------------------+-----------------------------------------------------+--------------------------------------------------------+------------------+----------------+
+
+

@@ -1,0 +1,924 @@
+#-----------------------------------------------------------
+# Vivado v2018.3 (64-bit)
+# SW Build 2405991 on Thu Dec  6 23:36:41 MST 2018
+# IP Build 2404404 on Fri Dec  7 01:43:56 MST 2018
+# Start of session at: Thu Aug 17 00:13:37 2023
+# Process ID: 926107
+# Current directory: /home/ljsch/sisdig_proyecto_final/sisdig_proyecto_final.runs/design_1_main_0_0_synth_1
+# Command line: vivado -log design_1_main_0_0.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source design_1_main_0_0.tcl
+# Log file: /home/ljsch/sisdig_proyecto_final/sisdig_proyecto_final.runs/design_1_main_0_0_synth_1/design_1_main_0_0.vds
+# Journal file: /home/ljsch/sisdig_proyecto_final/sisdig_proyecto_final.runs/design_1_main_0_0_synth_1/vivado.jou
+#-----------------------------------------------------------
+source design_1_main_0_0.tcl -notrace
+Command: synth_design -top design_1_main_0_0 -part xc7z020clg484-1 -mode out_of_context
+Starting synth_design
+Attempting to get a license for feature 'Synthesis' and/or device 'xc7z020'
+INFO: [Common 17-349] Got license for feature 'Synthesis' and/or device 'xc7z020'
+INFO: Launching helper process for spawning children vivado processes
+INFO: Helper process launched with PID 926272 
+---------------------------------------------------------------------------------
+Starting RTL Elaboration : Time (s): cpu = 00:00:07 ; elapsed = 00:00:15 . Memory (MB): peak = 1390.848 ; gain = 0.000 ; free physical = 3940 ; free virtual = 7508
+---------------------------------------------------------------------------------
+INFO: [Synth 8-638] synthesizing module 'design_1_main_0_0' [/home/ljsch/sisdig_proyecto_final/sisdig_proyecto_final.srcs/sources_1/bd/design_1/ip/design_1_main_0_0/synth/design_1_main_0_0.vhd:79]
+	Parameter RAM_DATA_WIDTH bound to: 8 - type: integer 
+	Parameter RAM_ADDRESS_WIDTH bound to: 15 - type: integer 
+	Parameter BYTES_TO_RECEIVE bound to: 32700 - type: integer 
+	Parameter CYCLES_TO_WAIT bound to: 100000 - type: integer 
+	Parameter COORDS_WIDTH bound to: 8 - type: integer 
+	Parameter ANGLE_WIDTH bound to: 10 - type: integer 
+	Parameter CORDIC_STAGES bound to: 8 - type: integer 
+	Parameter CORDIC_WIDTH bound to: 12 - type: integer 
+	Parameter CORDIC_OFFSET bound to: 4 - type: integer 
+	Parameter ANGLE_STEP_INITIAL bound to: 1 - type: integer 
+	Parameter CYCLES_TO_WAIT_TO_CORDIC_TO_FINISH bound to: 10 - type: integer 
+	Parameter VRAM_ADDR_BITS bound to: 16 - type: integer 
+	Parameter VRAM_DATA_BITS_WIDTH bound to: 1 - type: integer 
+INFO: [Synth 8-3491] module 'main' declared at '/home/ljsch/FIUBA/SisDig/repo_TP_final/repo_nacho/cordic_vhdl/code/src/main.vhd:5' bound to instance 'U0' of component 'main' [/home/ljsch/sisdig_proyecto_final/sisdig_proyecto_final.srcs/sources_1/bd/design_1/ip/design_1_main_0_0/synth/design_1_main_0_0.vhd:136]
+INFO: [Synth 8-638] synthesizing module 'main' [/home/ljsch/FIUBA/SisDig/repo_TP_final/repo_nacho/cordic_vhdl/code/src/main.vhd:48]
+	Parameter RAM_DATA_WIDTH bound to: 8 - type: integer 
+	Parameter RAM_ADDRESS_WIDTH bound to: 15 - type: integer 
+	Parameter BYTES_TO_RECEIVE bound to: 32700 - type: integer 
+	Parameter CYCLES_TO_WAIT bound to: 100000 - type: integer 
+	Parameter COORDS_WIDTH bound to: 8 - type: integer 
+	Parameter ANGLE_WIDTH bound to: 10 - type: integer 
+	Parameter CORDIC_STAGES bound to: 8 - type: integer 
+	Parameter CORDIC_WIDTH bound to: 12 - type: integer 
+	Parameter CORDIC_OFFSET bound to: 4 - type: integer 
+	Parameter ANGLE_STEP_INITIAL bound to: 1 - type: integer 
+	Parameter CYCLES_TO_WAIT_TO_CORDIC_TO_FINISH bound to: 10 - type: integer 
+	Parameter VRAM_ADDR_BITS bound to: 16 - type: integer 
+	Parameter VRAM_DATA_BITS_WIDTH bound to: 1 - type: integer 
+WARNING: [Synth 8-614] signal 'rotating_curr' is read in the process but is not in the sensitivity list [/home/ljsch/FIUBA/SisDig/repo_TP_final/repo_nacho/cordic_vhdl/code/src/main.vhd:252]
+WARNING: [Synth 8-614] signal 'angles_changed' is read in the process but is not in the sensitivity list [/home/ljsch/FIUBA/SisDig/repo_TP_final/repo_nacho/cordic_vhdl/code/src/main.vhd:252]
+INFO: [Synth 8-3491] module 'vga_ctrl' declared at '/home/ljsch/FIUBA/SisDig/repo_TP_final/repo_nacho/cordic_vhdl/code/src/VGActrl.vhd:5' bound to instance 'vga_control_inst' of component 'vga_ctrl' [/home/ljsch/FIUBA/SisDig/repo_TP_final/repo_nacho/cordic_vhdl/code/src/main.vhd:363]
+INFO: [Synth 8-638] synthesizing module 'vga_ctrl' [/home/ljsch/FIUBA/SisDig/repo_TP_final/repo_nacho/cordic_vhdl/code/src/VGActrl.vhd:20]
+INFO: [Synth 8-256] done synthesizing module 'vga_ctrl' (1#1) [/home/ljsch/FIUBA/SisDig/repo_TP_final/repo_nacho/cordic_vhdl/code/src/VGActrl.vhd:20]
+INFO: [Synth 8-3491] module 'sram_internal' declared at '/home/ljsch/sisdig_proyecto_final/sisdig_proyecto_final.srcs/sources_1/ip/sram_internal/synth/sram_internal.vhd:59' bound to instance 'sram_inst' of component 'sram_internal' [/home/ljsch/FIUBA/SisDig/repo_TP_final/repo_nacho/cordic_vhdl/code/src/main.vhd:378]
+INFO: [Synth 8-638] synthesizing module 'sram_internal' [/home/ljsch/sisdig_proyecto_final/sisdig_proyecto_final.srcs/sources_1/ip/sram_internal/synth/sram_internal.vhd:69]
+	Parameter C_FAMILY bound to: zynq - type: string 
+	Parameter C_XDEVICEFAMILY bound to: zynq - type: string 
+	Parameter C_ELABORATION_DIR bound to: ./ - type: string 
+	Parameter C_INTERFACE_TYPE bound to: 0 - type: integer 
+	Parameter C_AXI_TYPE bound to: 1 - type: integer 
+	Parameter C_AXI_SLAVE_TYPE bound to: 0 - type: integer 
+	Parameter C_USE_BRAM_BLOCK bound to: 0 - type: integer 
+	Parameter C_ENABLE_32BIT_ADDRESS bound to: 0 - type: integer 
+	Parameter C_CTRL_ECC_ALGO bound to: NONE - type: string 
+	Parameter C_HAS_AXI_ID bound to: 0 - type: integer 
+	Parameter C_AXI_ID_WIDTH bound to: 4 - type: integer 
+	Parameter C_MEM_TYPE bound to: 0 - type: integer 
+	Parameter C_BYTE_SIZE bound to: 9 - type: integer 
+	Parameter C_ALGORITHM bound to: 1 - type: integer 
+	Parameter C_PRIM_TYPE bound to: 1 - type: integer 
+	Parameter C_LOAD_INIT_FILE bound to: 1 - type: integer 
+	Parameter C_INIT_FILE_NAME bound to: sram_internal.mif - type: string 
+	Parameter C_INIT_FILE bound to: sram_internal.mem - type: string 
+	Parameter C_USE_DEFAULT_DATA bound to: 1 - type: integer 
+	Parameter C_DEFAULT_DATA bound to: 0 - type: string 
+	Parameter C_HAS_RSTA bound to: 0 - type: integer 
+	Parameter C_RST_PRIORITY_A bound to: CE - type: string 
+	Parameter C_RSTRAM_A bound to: 0 - type: integer 
+	Parameter C_INITA_VAL bound to: 0 - type: string 
+	Parameter C_HAS_ENA bound to: 0 - type: integer 
+	Parameter C_HAS_REGCEA bound to: 0 - type: integer 
+	Parameter C_USE_BYTE_WEA bound to: 0 - type: integer 
+	Parameter C_WEA_WIDTH bound to: 1 - type: integer 
+	Parameter C_WRITE_MODE_A bound to: WRITE_FIRST - type: string 
+	Parameter C_WRITE_WIDTH_A bound to: 8 - type: integer 
+	Parameter C_READ_WIDTH_A bound to: 8 - type: integer 
+	Parameter C_WRITE_DEPTH_A bound to: 32700 - type: integer 
+	Parameter C_READ_DEPTH_A bound to: 32700 - type: integer 
+	Parameter C_ADDRA_WIDTH bound to: 15 - type: integer 
+	Parameter C_HAS_RSTB bound to: 0 - type: integer 
+	Parameter C_RST_PRIORITY_B bound to: CE - type: string 
+	Parameter C_RSTRAM_B bound to: 0 - type: integer 
+	Parameter C_INITB_VAL bound to: 0 - type: string 
+	Parameter C_HAS_ENB bound to: 0 - type: integer 
+	Parameter C_HAS_REGCEB bound to: 0 - type: integer 
+	Parameter C_USE_BYTE_WEB bound to: 0 - type: integer 
+	Parameter C_WEB_WIDTH bound to: 1 - type: integer 
+	Parameter C_WRITE_MODE_B bound to: WRITE_FIRST - type: string 
+	Parameter C_WRITE_WIDTH_B bound to: 8 - type: integer 
+	Parameter C_READ_WIDTH_B bound to: 8 - type: integer 
+	Parameter C_WRITE_DEPTH_B bound to: 32700 - type: integer 
+	Parameter C_READ_DEPTH_B bound to: 32700 - type: integer 
+	Parameter C_ADDRB_WIDTH bound to: 15 - type: integer 
+	Parameter C_HAS_MEM_OUTPUT_REGS_A bound to: 1 - type: integer 
+	Parameter C_HAS_MEM_OUTPUT_REGS_B bound to: 0 - type: integer 
+	Parameter C_HAS_MUX_OUTPUT_REGS_A bound to: 0 - type: integer 
+	Parameter C_HAS_MUX_OUTPUT_REGS_B bound to: 0 - type: integer 
+	Parameter C_MUX_PIPELINE_STAGES bound to: 0 - type: integer 
+	Parameter C_HAS_SOFTECC_INPUT_REGS_A bound to: 0 - type: integer 
+	Parameter C_HAS_SOFTECC_OUTPUT_REGS_B bound to: 0 - type: integer 
+	Parameter C_USE_SOFTECC bound to: 0 - type: integer 
+	Parameter C_USE_ECC bound to: 0 - type: integer 
+	Parameter C_EN_ECC_PIPE bound to: 0 - type: integer 
+	Parameter C_READ_LATENCY_A bound to: 1 - type: integer 
+	Parameter C_READ_LATENCY_B bound to: 1 - type: integer 
+	Parameter C_HAS_INJECTERR bound to: 0 - type: integer 
+	Parameter C_SIM_COLLISION_CHECK bound to: ALL - type: string 
+	Parameter C_COMMON_CLK bound to: 0 - type: integer 
+	Parameter C_DISABLE_WARN_BHV_COLL bound to: 0 - type: integer 
+	Parameter C_EN_SLEEP_PIN bound to: 0 - type: integer 
+	Parameter C_USE_URAM bound to: 0 - type: integer 
+	Parameter C_EN_RDADDRA_CHG bound to: 0 - type: integer 
+	Parameter C_EN_RDADDRB_CHG bound to: 0 - type: integer 
+	Parameter C_EN_DEEPSLEEP_PIN bound to: 0 - type: integer 
+	Parameter C_EN_SHUTDOWN_PIN bound to: 0 - type: integer 
+	Parameter C_EN_SAFETY_CKT bound to: 0 - type: integer 
+	Parameter C_DISABLE_WARN_BHV_RANGE bound to: 0 - type: integer 
+	Parameter C_COUNT_36K_BRAM bound to: 8 - type: string 
+	Parameter C_COUNT_18K_BRAM bound to: 0 - type: string 
+	Parameter C_EST_POWER_SUMMARY bound to: Estimated Power for IP     :     2.5357 mW - type: string 
+INFO: [Synth 8-3491] module 'blk_mem_gen_v8_4_2' declared at '/home/ljsch/sisdig_proyecto_final/sisdig_proyecto_final.srcs/sources_1/ip/sram_internal/hdl/blk_mem_gen_v8_4_vhsyn_rfs.vhd:195321' bound to instance 'U0' of component 'blk_mem_gen_v8_4_2' [/home/ljsch/sisdig_proyecto_final/sisdig_proyecto_final.srcs/sources_1/ip/sram_internal/synth/sram_internal.vhd:234]
+INFO: [Synth 8-256] done synthesizing module 'sram_internal' (12#1) [/home/ljsch/sisdig_proyecto_final/sisdig_proyecto_final.srcs/sources_1/ip/sram_internal/synth/sram_internal.vhd:69]
+	Parameter VRAM_BITS_WIDTH bound to: 1 - type: integer 
+	Parameter VRAM_ADDR_BITS bound to: 16 - type: integer 
+INFO: [Synth 8-3491] module 'vram' declared at '/home/ljsch/FIUBA/SisDig/repo_TP_final/repo_nacho/cordic_vhdl/code/src/vram.vhd:5' bound to instance 'vram_inst' of component 'vram' [/home/ljsch/FIUBA/SisDig/repo_TP_final/repo_nacho/cordic_vhdl/code/src/main.vhd:387]
+INFO: [Synth 8-638] synthesizing module 'vram' [/home/ljsch/FIUBA/SisDig/repo_TP_final/repo_nacho/cordic_vhdl/code/src/vram.vhd:20]
+	Parameter VRAM_BITS_WIDTH bound to: 1 - type: integer 
+	Parameter VRAM_ADDR_BITS bound to: 16 - type: integer 
+INFO: [Synth 8-256] done synthesizing module 'vram' (13#1) [/home/ljsch/FIUBA/SisDig/repo_TP_final/repo_nacho/cordic_vhdl/code/src/vram.vhd:20]
+	Parameter VRAM_BITS_WIDTH bound to: 1 - type: integer 
+	Parameter VRAM_ADDR_BITS bound to: 16 - type: integer 
+INFO: [Synth 8-3491] module 'video_driver' declared at '/home/ljsch/FIUBA/SisDig/repo_TP_final/repo_nacho/cordic_vhdl/code/src/video_driver.vhd:5' bound to instance 'video_driver_inst' of component 'video_driver' [/home/ljsch/FIUBA/SisDig/repo_TP_final/repo_nacho/cordic_vhdl/code/src/main.vhd:401]
+INFO: [Synth 8-638] synthesizing module 'video_driver' [/home/ljsch/FIUBA/SisDig/repo_TP_final/repo_nacho/cordic_vhdl/code/src/video_driver.vhd:23]
+	Parameter VRAM_BITS_WIDTH bound to: 1 - type: integer 
+	Parameter VRAM_ADDR_BITS bound to: 16 - type: integer 
+INFO: [Synth 8-256] done synthesizing module 'video_driver' (14#1) [/home/ljsch/FIUBA/SisDig/repo_TP_final/repo_nacho/cordic_vhdl/code/src/video_driver.vhd:23]
+	Parameter COORDS_WIDTH bound to: 12 - type: integer 
+	Parameter ANGLES_INTEGER_WIDTH bound to: 10 - type: integer 
+	Parameter STAGES bound to: 8 - type: integer 
+INFO: [Synth 8-3491] module 'rotator' declared at '/home/ljsch/FIUBA/SisDig/repo_TP_final/repo_nacho/cordic_vhdl/code/src/Cordic/rotator.vhdl:5' bound to instance 'cordic_rotator' of component 'rotator' [/home/ljsch/FIUBA/SisDig/repo_TP_final/repo_nacho/cordic_vhdl/code/src/main.vhd:496]
+INFO: [Synth 8-638] synthesizing module 'rotator' [/home/ljsch/FIUBA/SisDig/repo_TP_final/repo_nacho/cordic_vhdl/code/src/Cordic/rotator.vhdl:17]
+	Parameter COORDS_WIDTH bound to: 12 - type: integer 
+	Parameter ANGLES_INTEGER_WIDTH bound to: 10 - type: integer 
+	Parameter STAGES bound to: 8 - type: integer 
+	Parameter COORDS_WIDTH bound to: 12 - type: integer 
+	Parameter ANGLES_INTEGER_WIDTH bound to: 10 - type: integer 
+	Parameter STAGES bound to: 8 - type: integer 
+INFO: [Synth 8-3491] module 'cordic' declared at '/home/ljsch/FIUBA/SisDig/repo_TP_final/repo_nacho/cordic_vhdl/code/src/Cordic/cordic.vhdl:5' bound to instance 'x_rotator' of component 'cordic' [/home/ljsch/FIUBA/SisDig/repo_TP_final/repo_nacho/cordic_vhdl/code/src/Cordic/rotator.vhdl:77]
+INFO: [Synth 8-638] synthesizing module 'cordic' [/home/ljsch/FIUBA/SisDig/repo_TP_final/repo_nacho/cordic_vhdl/code/src/Cordic/cordic.vhdl:15]
+	Parameter COORDS_WIDTH bound to: 12 - type: integer 
+	Parameter ANGLES_INTEGER_WIDTH bound to: 10 - type: integer 
+	Parameter STAGES bound to: 8 - type: integer 
+	Parameter COORDS_WIDTH bound to: 12 - type: integer 
+	Parameter ANGLE_WIDTH bound to: 26 - type: integer 
+	Parameter STEP_WIDTH bound to: 4 - type: integer 
+INFO: [Synth 8-3491] module 'cordic_stage' declared at '/home/ljsch/FIUBA/SisDig/repo_TP_final/repo_nacho/cordic_vhdl/code/src/Cordic/cordic_stage.vhdl:5' bound to instance 'current_cordic_stage' of component 'cordic_stage' [/home/ljsch/FIUBA/SisDig/repo_TP_final/repo_nacho/cordic_vhdl/code/src/Cordic/cordic.vhdl:92]
+INFO: [Synth 8-638] synthesizing module 'cordic_stage' [/home/ljsch/FIUBA/SisDig/repo_TP_final/repo_nacho/cordic_vhdl/code/src/Cordic/cordic_stage.vhdl:19]
+	Parameter COORDS_WIDTH bound to: 12 - type: integer 
+	Parameter ANGLE_WIDTH bound to: 26 - type: integer 
+	Parameter STEP_WIDTH bound to: 4 - type: integer 
+INFO: [Synth 8-256] done synthesizing module 'cordic_stage' (15#1) [/home/ljsch/FIUBA/SisDig/repo_TP_final/repo_nacho/cordic_vhdl/code/src/Cordic/cordic_stage.vhdl:19]
+	Parameter COORDS_WIDTH bound to: 12 - type: integer 
+	Parameter ANGLE_WIDTH bound to: 26 - type: integer 
+	Parameter STEP_WIDTH bound to: 4 - type: integer 
+INFO: [Synth 8-3491] module 'cordic_stage' declared at '/home/ljsch/FIUBA/SisDig/repo_TP_final/repo_nacho/cordic_vhdl/code/src/Cordic/cordic_stage.vhdl:5' bound to instance 'current_cordic_stage' of component 'cordic_stage' [/home/ljsch/FIUBA/SisDig/repo_TP_final/repo_nacho/cordic_vhdl/code/src/Cordic/cordic.vhdl:92]
+	Parameter COORDS_WIDTH bound to: 12 - type: integer 
+	Parameter ANGLE_WIDTH bound to: 26 - type: integer 
+	Parameter STEP_WIDTH bound to: 4 - type: integer 
+INFO: [Synth 8-3491] module 'cordic_stage' declared at '/home/ljsch/FIUBA/SisDig/repo_TP_final/repo_nacho/cordic_vhdl/code/src/Cordic/cordic_stage.vhdl:5' bound to instance 'current_cordic_stage' of component 'cordic_stage' [/home/ljsch/FIUBA/SisDig/repo_TP_final/repo_nacho/cordic_vhdl/code/src/Cordic/cordic.vhdl:92]
+	Parameter COORDS_WIDTH bound to: 12 - type: integer 
+	Parameter ANGLE_WIDTH bound to: 26 - type: integer 
+	Parameter STEP_WIDTH bound to: 4 - type: integer 
+INFO: [Synth 8-3491] module 'cordic_stage' declared at '/home/ljsch/FIUBA/SisDig/repo_TP_final/repo_nacho/cordic_vhdl/code/src/Cordic/cordic_stage.vhdl:5' bound to instance 'current_cordic_stage' of component 'cordic_stage' [/home/ljsch/FIUBA/SisDig/repo_TP_final/repo_nacho/cordic_vhdl/code/src/Cordic/cordic.vhdl:92]
+	Parameter COORDS_WIDTH bound to: 12 - type: integer 
+	Parameter ANGLE_WIDTH bound to: 26 - type: integer 
+	Parameter STEP_WIDTH bound to: 4 - type: integer 
+INFO: [Synth 8-3491] module 'cordic_stage' declared at '/home/ljsch/FIUBA/SisDig/repo_TP_final/repo_nacho/cordic_vhdl/code/src/Cordic/cordic_stage.vhdl:5' bound to instance 'current_cordic_stage' of component 'cordic_stage' [/home/ljsch/FIUBA/SisDig/repo_TP_final/repo_nacho/cordic_vhdl/code/src/Cordic/cordic.vhdl:92]
+	Parameter COORDS_WIDTH bound to: 12 - type: integer 
+	Parameter ANGLE_WIDTH bound to: 26 - type: integer 
+	Parameter STEP_WIDTH bound to: 4 - type: integer 
+INFO: [Synth 8-3491] module 'cordic_stage' declared at '/home/ljsch/FIUBA/SisDig/repo_TP_final/repo_nacho/cordic_vhdl/code/src/Cordic/cordic_stage.vhdl:5' bound to instance 'current_cordic_stage' of component 'cordic_stage' [/home/ljsch/FIUBA/SisDig/repo_TP_final/repo_nacho/cordic_vhdl/code/src/Cordic/cordic.vhdl:92]
+	Parameter COORDS_WIDTH bound to: 12 - type: integer 
+	Parameter ANGLE_WIDTH bound to: 26 - type: integer 
+	Parameter STEP_WIDTH bound to: 4 - type: integer 
+INFO: [Synth 8-3491] module 'cordic_stage' declared at '/home/ljsch/FIUBA/SisDig/repo_TP_final/repo_nacho/cordic_vhdl/code/src/Cordic/cordic_stage.vhdl:5' bound to instance 'current_cordic_stage' of component 'cordic_stage' [/home/ljsch/FIUBA/SisDig/repo_TP_final/repo_nacho/cordic_vhdl/code/src/Cordic/cordic.vhdl:92]
+	Parameter COORDS_WIDTH bound to: 12 - type: integer 
+	Parameter ANGLE_WIDTH bound to: 26 - type: integer 
+	Parameter STEP_WIDTH bound to: 4 - type: integer 
+INFO: [Synth 8-3491] module 'cordic_stage' declared at '/home/ljsch/FIUBA/SisDig/repo_TP_final/repo_nacho/cordic_vhdl/code/src/Cordic/cordic_stage.vhdl:5' bound to instance 'current_cordic_stage' of component 'cordic_stage' [/home/ljsch/FIUBA/SisDig/repo_TP_final/repo_nacho/cordic_vhdl/code/src/Cordic/cordic.vhdl:92]
+INFO: [Synth 8-256] done synthesizing module 'cordic' (16#1) [/home/ljsch/FIUBA/SisDig/repo_TP_final/repo_nacho/cordic_vhdl/code/src/Cordic/cordic.vhdl:15]
+	Parameter COORDS_WIDTH bound to: 12 - type: integer 
+	Parameter ANGLES_INTEGER_WIDTH bound to: 10 - type: integer 
+	Parameter STAGES bound to: 8 - type: integer 
+INFO: [Synth 8-3491] module 'cordic' declared at '/home/ljsch/FIUBA/SisDig/repo_TP_final/repo_nacho/cordic_vhdl/code/src/Cordic/cordic.vhdl:5' bound to instance 'y_rotator' of component 'cordic' [/home/ljsch/FIUBA/SisDig/repo_TP_final/repo_nacho/cordic_vhdl/code/src/Cordic/rotator.vhdl:92]
+	Parameter COORDS_WIDTH bound to: 12 - type: integer 
+	Parameter ANGLES_INTEGER_WIDTH bound to: 10 - type: integer 
+	Parameter STAGES bound to: 8 - type: integer 
+INFO: [Synth 8-3491] module 'cordic' declared at '/home/ljsch/FIUBA/SisDig/repo_TP_final/repo_nacho/cordic_vhdl/code/src/Cordic/cordic.vhdl:5' bound to instance 'z_rotator' of component 'cordic' [/home/ljsch/FIUBA/SisDig/repo_TP_final/repo_nacho/cordic_vhdl/code/src/Cordic/rotator.vhdl:107]
+INFO: [Synth 8-256] done synthesizing module 'rotator' (17#1) [/home/ljsch/FIUBA/SisDig/repo_TP_final/repo_nacho/cordic_vhdl/code/src/Cordic/rotator.vhdl:17]
+WARNING: [Synth 8-6014] Unused sequential element sram_rw_current_reg was removed.  [/home/ljsch/FIUBA/SisDig/repo_TP_final/repo_nacho/cordic_vhdl/code/src/main.vhd:236]
+INFO: [Synth 8-256] done synthesizing module 'main' (18#1) [/home/ljsch/FIUBA/SisDig/repo_TP_final/repo_nacho/cordic_vhdl/code/src/main.vhd:48]
+INFO: [Synth 8-256] done synthesizing module 'design_1_main_0_0' (19#1) [/home/ljsch/sisdig_proyecto_final/sisdig_proyecto_final.srcs/sources_1/bd/design_1/ip/design_1_main_0_0/synth/design_1_main_0_0.vhd:79]
+WARNING: [Synth 8-3331] design vram has unconnected port rst
+WARNING: [Synth 8-3331] design blk_mem_gen_mux__parameterized0 has unconnected port MUX_RST[0]
+WARNING: [Synth 8-3331] design blk_mem_gen_mux__parameterized0 has unconnected port MEM_LAT_RST
+WARNING: [Synth 8-3331] design blk_mem_gen_mux__parameterized0 has unconnected port MEM_REG_RST
+WARNING: [Synth 8-3331] design blk_mem_gen_mux__parameterized0 has unconnected port MUX_REGCE[0]
+WARNING: [Synth 8-3331] design blk_mem_gen_mux__parameterized0 has unconnected port MEM_REGCE
+WARNING: [Synth 8-3331] design blk_mem_gen_mux__parameterized0 has unconnected port WE
+WARNING: [Synth 8-3331] design blk_mem_gen_mux__parameterized0 has unconnected port ADDR_IN[14]
+WARNING: [Synth 8-3331] design blk_mem_gen_mux__parameterized0 has unconnected port ADDR_IN[13]
+WARNING: [Synth 8-3331] design blk_mem_gen_mux__parameterized0 has unconnected port ADDR_IN[12]
+WARNING: [Synth 8-3331] design blk_mem_gen_mux__parameterized0 has unconnected port ADDR_IN[11]
+WARNING: [Synth 8-3331] design blk_mem_gen_mux__parameterized0 has unconnected port ADDR_IN[10]
+WARNING: [Synth 8-3331] design blk_mem_gen_mux__parameterized0 has unconnected port ADDR_IN[9]
+WARNING: [Synth 8-3331] design blk_mem_gen_mux__parameterized0 has unconnected port ADDR_IN[8]
+WARNING: [Synth 8-3331] design blk_mem_gen_mux__parameterized0 has unconnected port ADDR_IN[7]
+WARNING: [Synth 8-3331] design blk_mem_gen_mux__parameterized0 has unconnected port ADDR_IN[6]
+WARNING: [Synth 8-3331] design blk_mem_gen_mux__parameterized0 has unconnected port ADDR_IN[5]
+WARNING: [Synth 8-3331] design blk_mem_gen_mux__parameterized0 has unconnected port ADDR_IN[4]
+WARNING: [Synth 8-3331] design blk_mem_gen_mux__parameterized0 has unconnected port ADDR_IN[3]
+WARNING: [Synth 8-3331] design blk_mem_gen_mux__parameterized0 has unconnected port ADDR_IN[2]
+WARNING: [Synth 8-3331] design blk_mem_gen_mux__parameterized0 has unconnected port ADDR_IN[1]
+WARNING: [Synth 8-3331] design blk_mem_gen_mux__parameterized0 has unconnected port ADDR_IN[0]
+WARNING: [Synth 8-3331] design blk_mem_gen_mux__parameterized0 has unconnected port SBITERRIN[7]
+WARNING: [Synth 8-3331] design blk_mem_gen_mux__parameterized0 has unconnected port SBITERRIN[6]
+WARNING: [Synth 8-3331] design blk_mem_gen_mux__parameterized0 has unconnected port SBITERRIN[5]
+WARNING: [Synth 8-3331] design blk_mem_gen_mux__parameterized0 has unconnected port SBITERRIN[4]
+WARNING: [Synth 8-3331] design blk_mem_gen_mux__parameterized0 has unconnected port SBITERRIN[3]
+WARNING: [Synth 8-3331] design blk_mem_gen_mux__parameterized0 has unconnected port SBITERRIN[2]
+WARNING: [Synth 8-3331] design blk_mem_gen_mux__parameterized0 has unconnected port SBITERRIN[1]
+WARNING: [Synth 8-3331] design blk_mem_gen_mux__parameterized0 has unconnected port SBITERRIN[0]
+WARNING: [Synth 8-3331] design blk_mem_gen_mux__parameterized0 has unconnected port DBITERRIN[7]
+WARNING: [Synth 8-3331] design blk_mem_gen_mux__parameterized0 has unconnected port DBITERRIN[6]
+WARNING: [Synth 8-3331] design blk_mem_gen_mux__parameterized0 has unconnected port DBITERRIN[5]
+WARNING: [Synth 8-3331] design blk_mem_gen_mux__parameterized0 has unconnected port DBITERRIN[4]
+WARNING: [Synth 8-3331] design blk_mem_gen_mux__parameterized0 has unconnected port DBITERRIN[3]
+WARNING: [Synth 8-3331] design blk_mem_gen_mux__parameterized0 has unconnected port DBITERRIN[2]
+WARNING: [Synth 8-3331] design blk_mem_gen_mux__parameterized0 has unconnected port DBITERRIN[1]
+WARNING: [Synth 8-3331] design blk_mem_gen_mux__parameterized0 has unconnected port DBITERRIN[0]
+WARNING: [Synth 8-3331] design blk_mem_gen_mux__parameterized0 has unconnected port ECCPIPECE
+WARNING: [Synth 8-3331] design blk_mem_gen_mux has unconnected port MUX_RST[0]
+WARNING: [Synth 8-3331] design blk_mem_gen_mux has unconnected port MEM_LAT_RST
+WARNING: [Synth 8-3331] design blk_mem_gen_mux has unconnected port MUX_REGCE[0]
+WARNING: [Synth 8-3331] design blk_mem_gen_mux has unconnected port WE
+WARNING: [Synth 8-3331] design blk_mem_gen_mux has unconnected port ADDR_IN[14]
+WARNING: [Synth 8-3331] design blk_mem_gen_mux has unconnected port ADDR_IN[13]
+WARNING: [Synth 8-3331] design blk_mem_gen_mux has unconnected port ADDR_IN[12]
+WARNING: [Synth 8-3331] design blk_mem_gen_mux has unconnected port ADDR_IN[11]
+WARNING: [Synth 8-3331] design blk_mem_gen_mux has unconnected port ADDR_IN[10]
+WARNING: [Synth 8-3331] design blk_mem_gen_mux has unconnected port ADDR_IN[9]
+WARNING: [Synth 8-3331] design blk_mem_gen_mux has unconnected port ADDR_IN[8]
+WARNING: [Synth 8-3331] design blk_mem_gen_mux has unconnected port ADDR_IN[7]
+WARNING: [Synth 8-3331] design blk_mem_gen_mux has unconnected port ADDR_IN[6]
+WARNING: [Synth 8-3331] design blk_mem_gen_mux has unconnected port ADDR_IN[5]
+WARNING: [Synth 8-3331] design blk_mem_gen_mux has unconnected port ADDR_IN[4]
+WARNING: [Synth 8-3331] design blk_mem_gen_mux has unconnected port ADDR_IN[3]
+WARNING: [Synth 8-3331] design blk_mem_gen_mux has unconnected port ADDR_IN[2]
+WARNING: [Synth 8-3331] design blk_mem_gen_mux has unconnected port ADDR_IN[1]
+WARNING: [Synth 8-3331] design blk_mem_gen_mux has unconnected port ADDR_IN[0]
+WARNING: [Synth 8-3331] design blk_mem_gen_mux has unconnected port SBITERRIN[7]
+WARNING: [Synth 8-3331] design blk_mem_gen_mux has unconnected port SBITERRIN[6]
+WARNING: [Synth 8-3331] design blk_mem_gen_mux has unconnected port SBITERRIN[5]
+WARNING: [Synth 8-3331] design blk_mem_gen_mux has unconnected port SBITERRIN[4]
+WARNING: [Synth 8-3331] design blk_mem_gen_mux has unconnected port SBITERRIN[3]
+WARNING: [Synth 8-3331] design blk_mem_gen_mux has unconnected port SBITERRIN[2]
+WARNING: [Synth 8-3331] design blk_mem_gen_mux has unconnected port SBITERRIN[1]
+WARNING: [Synth 8-3331] design blk_mem_gen_mux has unconnected port SBITERRIN[0]
+WARNING: [Synth 8-3331] design blk_mem_gen_mux has unconnected port DBITERRIN[7]
+WARNING: [Synth 8-3331] design blk_mem_gen_mux has unconnected port DBITERRIN[6]
+WARNING: [Synth 8-3331] design blk_mem_gen_mux has unconnected port DBITERRIN[5]
+WARNING: [Synth 8-3331] design blk_mem_gen_mux has unconnected port DBITERRIN[4]
+WARNING: [Synth 8-3331] design blk_mem_gen_mux has unconnected port DBITERRIN[3]
+WARNING: [Synth 8-3331] design blk_mem_gen_mux has unconnected port DBITERRIN[2]
+WARNING: [Synth 8-3331] design blk_mem_gen_mux has unconnected port DBITERRIN[1]
+WARNING: [Synth 8-3331] design blk_mem_gen_mux has unconnected port DBITERRIN[0]
+WARNING: [Synth 8-3331] design blk_mem_gen_mux has unconnected port ECCPIPECE
+WARNING: [Synth 8-3331] design blk_mem_gen_prim_wrapper_init__parameterized6 has unconnected port SSRA
+WARNING: [Synth 8-3331] design blk_mem_gen_prim_wrapper_init__parameterized6 has unconnected port CLKB
+WARNING: [Synth 8-3331] design blk_mem_gen_prim_wrapper_init__parameterized6 has unconnected port SSRB
+WARNING: [Synth 8-3331] design blk_mem_gen_prim_wrapper_init__parameterized6 has unconnected port ENB
+WARNING: [Synth 8-3331] design blk_mem_gen_prim_wrapper_init__parameterized6 has unconnected port REGCEB
+WARNING: [Synth 8-3331] design blk_mem_gen_prim_wrapper_init__parameterized6 has unconnected port WEB[0]
+WARNING: [Synth 8-3331] design blk_mem_gen_prim_wrapper_init__parameterized6 has unconnected port ADDRB[11]
+WARNING: [Synth 8-3331] design blk_mem_gen_prim_wrapper_init__parameterized6 has unconnected port ADDRB[10]
+WARNING: [Synth 8-3331] design blk_mem_gen_prim_wrapper_init__parameterized6 has unconnected port ADDRB[9]
+WARNING: [Synth 8-3331] design blk_mem_gen_prim_wrapper_init__parameterized6 has unconnected port ADDRB[8]
+WARNING: [Synth 8-3331] design blk_mem_gen_prim_wrapper_init__parameterized6 has unconnected port ADDRB[7]
+WARNING: [Synth 8-3331] design blk_mem_gen_prim_wrapper_init__parameterized6 has unconnected port ADDRB[6]
+WARNING: [Synth 8-3331] design blk_mem_gen_prim_wrapper_init__parameterized6 has unconnected port ADDRB[5]
+WARNING: [Synth 8-3331] design blk_mem_gen_prim_wrapper_init__parameterized6 has unconnected port ADDRB[4]
+WARNING: [Synth 8-3331] design blk_mem_gen_prim_wrapper_init__parameterized6 has unconnected port ADDRB[3]
+WARNING: [Synth 8-3331] design blk_mem_gen_prim_wrapper_init__parameterized6 has unconnected port ADDRB[2]
+WARNING: [Synth 8-3331] design blk_mem_gen_prim_wrapper_init__parameterized6 has unconnected port ADDRB[1]
+WARNING: [Synth 8-3331] design blk_mem_gen_prim_wrapper_init__parameterized6 has unconnected port ADDRB[0]
+WARNING: [Synth 8-3331] design blk_mem_gen_prim_wrapper_init__parameterized6 has unconnected port DINB[8]
+WARNING: [Synth 8-3331] design blk_mem_gen_prim_wrapper_init__parameterized6 has unconnected port DINB[7]
+WARNING: [Synth 8-3331] design blk_mem_gen_prim_wrapper_init__parameterized6 has unconnected port DINB[6]
+WARNING: [Synth 8-3331] design blk_mem_gen_prim_wrapper_init__parameterized6 has unconnected port DINB[5]
+WARNING: [Synth 8-3331] design blk_mem_gen_prim_wrapper_init__parameterized6 has unconnected port DINB[4]
+WARNING: [Synth 8-3331] design blk_mem_gen_prim_wrapper_init__parameterized6 has unconnected port DINB[3]
+WARNING: [Synth 8-3331] design blk_mem_gen_prim_wrapper_init__parameterized6 has unconnected port DINB[2]
+INFO: [Common 17-14] Message 'Synth 8-3331' appears 100 times and further instances of the messages will be disabled. Use the Tcl command set_msg_config to change the current settings.
+---------------------------------------------------------------------------------
+Finished RTL Elaboration : Time (s): cpu = 00:01:33 ; elapsed = 00:01:51 . Memory (MB): peak = 1602.965 ; gain = 212.117 ; free physical = 3941 ; free virtual = 7505
+---------------------------------------------------------------------------------
+
+Report Check Netlist: 
++------+------------------+-------+---------+-------+------------------+
+|      |Item              |Errors |Warnings |Status |Description       |
++------+------------------+-------+---------+-------+------------------+
+|1     |multi_driven_nets |      0|        0|Passed |Multi driven nets |
++------+------------------+-------+---------+-------+------------------+
+---------------------------------------------------------------------------------
+Start Handling Custom Attributes
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Handling Custom Attributes : Time (s): cpu = 00:01:33 ; elapsed = 00:01:51 . Memory (MB): peak = 1602.965 ; gain = 212.117 ; free physical = 3949 ; free virtual = 7514
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished RTL Optimization Phase 1 : Time (s): cpu = 00:01:33 ; elapsed = 00:01:51 . Memory (MB): peak = 1602.965 ; gain = 212.117 ; free physical = 3949 ; free virtual = 7514
+---------------------------------------------------------------------------------
+INFO: [Netlist 29-17] Analyzing 8 Unisim elements for replacement
+INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
+INFO: [Device 21-403] Loading part xc7z020clg484-1
+INFO: [Project 1-570] Preparing netlist for logic optimization
+
+Processing XDC Constraints
+Initializing timing engine
+Parsing XDC File [/home/ljsch/sisdig_proyecto_final/sisdig_proyecto_final.srcs/sources_1/bd/design_1/ip/design_1_main_0_0/design_1_main_0_0_ooc.xdc] for cell 'U0'
+Finished Parsing XDC File [/home/ljsch/sisdig_proyecto_final/sisdig_proyecto_final.srcs/sources_1/bd/design_1/ip/design_1_main_0_0/design_1_main_0_0_ooc.xdc] for cell 'U0'
+Parsing XDC File [/home/ljsch/sisdig_proyecto_final/sisdig_proyecto_final.runs/design_1_main_0_0_synth_1/dont_touch.xdc]
+Finished Parsing XDC File [/home/ljsch/sisdig_proyecto_final/sisdig_proyecto_final.runs/design_1_main_0_0_synth_1/dont_touch.xdc]
+Completed Processing XDC Constraints
+
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1763.973 ; gain = 0.000 ; free physical = 3733 ; free virtual = 7293
+INFO: [Project 1-111] Unisim Transformation Summary:
+No Unisim elements were transformed.
+
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1763.973 ; gain = 0.000 ; free physical = 3733 ; free virtual = 7293
+Constraint Validation Runtime : Time (s): cpu = 00:00:00.03 ; elapsed = 00:00:00.03 . Memory (MB): peak = 1763.973 ; gain = 0.000 ; free physical = 3733 ; free virtual = 7293
+---------------------------------------------------------------------------------
+Finished Constraint Validation : Time (s): cpu = 00:01:43 ; elapsed = 00:02:02 . Memory (MB): peak = 1763.973 ; gain = 373.125 ; free physical = 3787 ; free virtual = 7362
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Loading Part and Timing Information
+---------------------------------------------------------------------------------
+Loading part: xc7z020clg484-1
+---------------------------------------------------------------------------------
+Finished Loading Part and Timing Information : Time (s): cpu = 00:01:43 ; elapsed = 00:02:02 . Memory (MB): peak = 1763.973 ; gain = 373.125 ; free physical = 3787 ; free virtual = 7361
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Applying 'set_property' XDC Constraints
+---------------------------------------------------------------------------------
+Applied set_property DONT_TOUCH = true for U0. (constraint file  /home/ljsch/sisdig_proyecto_final/sisdig_proyecto_final.runs/design_1_main_0_0_synth_1/dont_touch.xdc, line 14).
+Applied set_property DONT_TOUCH = true for U0/sram_inst. (constraint file  auto generated constraint, line ).
+---------------------------------------------------------------------------------
+Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:01:43 ; elapsed = 00:02:03 . Memory (MB): peak = 1763.973 ; gain = 373.125 ; free physical = 3787 ; free virtual = 7361
+---------------------------------------------------------------------------------
+INFO: [Synth 8-5546] ROM "vsenable" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5818] HDL ADVISOR - The operator resource <adder> is shared. To prevent sharing consider applying a KEEP on the output of the operator [/home/ljsch/FIUBA/SisDig/repo_TP_final/repo_nacho/cordic_vhdl/code/src/Cordic/cordic_stage.vhdl:32]
+INFO: [Synth 8-5818] HDL ADVISOR - The operator resource <adder> is shared. To prevent sharing consider applying a KEEP on the output of the operator [/home/ljsch/FIUBA/SisDig/repo_TP_final/repo_nacho/cordic_vhdl/code/src/Cordic/cordic_stage.vhdl:34]
+INFO: [Synth 8-5818] HDL ADVISOR - The operator resource <adder> is shared. To prevent sharing consider applying a KEEP on the output of the operator [/home/ljsch/FIUBA/SisDig/repo_TP_final/repo_nacho/cordic_vhdl/code/src/Cordic/cordic_stage.vhdl:36]
+INFO: [Synth 8-5818] HDL ADVISOR - The operator resource <adder> is shared. To prevent sharing consider applying a KEEP on the output of the operator [/home/ljsch/FIUBA/SisDig/repo_TP_final/repo_nacho/cordic_vhdl/code/src/main.vhd:273]
+INFO: [Synth 8-802] inferred FSM for state register 'state_current_reg' in module 'main'
+INFO: [Synth 8-5545] ROM "sram_address_next" won't be mapped to RAM because address size (31) is larger than maximum supported(25)
+INFO: [Synth 8-5545] ROM "cycles_next" won't be mapped to RAM because address size (31) is larger than maximum supported(25)
+INFO: [Synth 8-5545] ROM "cycles_next" won't be mapped to RAM because address size (31) is larger than maximum supported(25)
+INFO: [Synth 8-5545] ROM "x_coord_next" won't be mapped to RAM because address size (31) is larger than maximum supported(25)
+INFO: [Synth 8-5545] ROM "y_coord_next" won't be mapped to RAM because address size (31) is larger than maximum supported(25)
+INFO: [Synth 8-5545] ROM "rotating_next" won't be mapped to RAM because address size (31) is larger than maximum supported(25)
+INFO: [Synth 8-5546] ROM "angle_x_rotator" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "angle_y_rotator" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "angle_z_rotator" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5544] ROM "vram_addr_wr_pointer_next" won't be mapped to Block RAM because address size (4) smaller than threshold (5)
+INFO: [Synth 8-5544] ROM "vram_addr_wr_next" won't be mapped to Block RAM because address size (4) smaller than threshold (5)
+INFO: [Synth 8-5545] ROM "state_next" won't be mapped to RAM because address size (31) is larger than maximum supported(25)
+INFO: [Synth 8-5544] ROM "state_next" won't be mapped to Block RAM because address size (1) smaller than threshold (5)
+INFO: [Synth 8-5544] ROM "state_next" won't be mapped to Block RAM because address size (1) smaller than threshold (5)
+INFO: [Synth 8-5545] ROM "state_next" won't be mapped to RAM because address size (31) is larger than maximum supported(25)
+---------------------------------------------------------------------------------------------------
+                   State |                     New Encoding |                Previous Encoding 
+---------------------------------------------------------------------------------------------------
+              state_init |                             0000 |                             0000
+      state_reset_device |                             0001 |                             0110
+    state_read_from_sram |                             0010 |                             0010
+              state_idle |                             0011 |                             0001
+        state_clean_vram |                             0100 |                             0011
+    state_process_coords |                             0101 |                             0100
+      state_print_coords |                             0110 |                             0101
+state_read_from_sram_prev |                             0111 |                             0111
+state_read_from_sram_prev2 |                             1000 |                             1000
+---------------------------------------------------------------------------------------------------
+INFO: [Synth 8-3354] encoded FSM with state register 'state_current_reg' using encoding 'sequential' in module 'main'
+WARNING: [Synth 8-327] inferring latch for variable 'X_in_rotator_reg' [/home/ljsch/FIUBA/SisDig/repo_TP_final/repo_nacho/cordic_vhdl/code/src/main.vhd:215]
+WARNING: [Synth 8-327] inferring latch for variable 'Y_in_rotator_reg' [/home/ljsch/FIUBA/SisDig/repo_TP_final/repo_nacho/cordic_vhdl/code/src/main.vhd:217]
+WARNING: [Synth 8-327] inferring latch for variable 'Z_in_rotator_reg' [/home/ljsch/FIUBA/SisDig/repo_TP_final/repo_nacho/cordic_vhdl/code/src/main.vhd:219]
+---------------------------------------------------------------------------------
+Finished RTL Optimization Phase 2 : Time (s): cpu = 00:01:44 ; elapsed = 00:02:04 . Memory (MB): peak = 1763.973 ; gain = 373.125 ; free physical = 3785 ; free virtual = 7361
+---------------------------------------------------------------------------------
+
+Report RTL Partitions: 
++-+--------------+------------+----------+
+| |RTL Partition |Replication |Instances |
++-+--------------+------------+----------+
++-+--------------+------------+----------+
+---------------------------------------------------------------------------------
+Start RTL Component Statistics 
+---------------------------------------------------------------------------------
+Detailed RTL Component Info : 
++---Adders : 
+	   2 Input     31 Bit       Adders := 2     
+	   3 Input     26 Bit       Adders := 24    
+	   2 Input     20 Bit       Adders := 2     
+	   2 Input     15 Bit       Adders := 1     
+	   3 Input     12 Bit       Adders := 48    
+	   2 Input     12 Bit       Adders := 3     
+	   2 Input     10 Bit       Adders := 15    
+	   2 Input      8 Bit       Adders := 4     
++---Registers : 
+	               31 Bit    Registers := 1     
+	               20 Bit    Registers := 2     
+	               16 Bit    Registers := 2     
+	               15 Bit    Registers := 2     
+	               12 Bit    Registers := 9     
+	               10 Bit    Registers := 8     
+	                8 Bit    Registers := 4     
+	                3 Bit    Registers := 3     
+	                1 Bit    Registers := 8     
++---RAMs : 
+	              64K Bit         RAMs := 1     
++---Muxes : 
+	   9 Input     31 Bit        Muxes := 1     
+	   2 Input     31 Bit        Muxes := 2     
+	   4 Input     31 Bit        Muxes := 1     
+	   2 Input     26 Bit        Muxes := 24    
+	   2 Input     20 Bit        Muxes := 4     
+	   2 Input     16 Bit        Muxes := 1     
+	   9 Input     16 Bit        Muxes := 1     
+	   2 Input     15 Bit        Muxes := 1     
+	   9 Input     15 Bit        Muxes := 1     
+	   2 Input     12 Bit        Muxes := 63    
+	   2 Input     10 Bit        Muxes := 10    
+	   4 Input     10 Bit        Muxes := 2     
+	   3 Input      8 Bit        Muxes := 1     
+	  19 Input      4 Bit        Muxes := 1     
+	   2 Input      3 Bit        Muxes := 2     
+	   9 Input      2 Bit        Muxes := 1     
+	   2 Input      1 Bit        Muxes := 31    
+	   4 Input      1 Bit        Muxes := 4     
+	   9 Input      1 Bit        Muxes := 13    
+---------------------------------------------------------------------------------
+Finished RTL Component Statistics 
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start RTL Hierarchical Component Statistics 
+---------------------------------------------------------------------------------
+Hierarchical RTL Component report 
+Module vga_ctrl 
+Detailed RTL Component Info : 
++---Adders : 
+	   2 Input     10 Bit       Adders := 4     
++---Registers : 
+	               10 Bit    Registers := 2     
+	                1 Bit    Registers := 2     
++---Muxes : 
+	   2 Input      1 Bit        Muxes := 1     
+Module bindec 
+Detailed RTL Component Info : 
++---Muxes : 
+	   2 Input      1 Bit        Muxes := 8     
+Module blk_mem_gen_mux 
+Detailed RTL Component Info : 
++---Registers : 
+	               15 Bit    Registers := 1     
+	                3 Bit    Registers := 2     
++---Muxes : 
+	   2 Input      1 Bit        Muxes := 1     
+Module blk_mem_gen_mux__parameterized0 
+Detailed RTL Component Info : 
++---Registers : 
+	                3 Bit    Registers := 1     
+Module vram 
+Detailed RTL Component Info : 
++---Registers : 
+	                1 Bit    Registers := 1     
++---RAMs : 
+	              64K Bit         RAMs := 1     
+Module video_driver 
+Detailed RTL Component Info : 
++---Adders : 
+	   2 Input      8 Bit       Adders := 2     
++---Registers : 
+	               16 Bit    Registers := 1     
+	                1 Bit    Registers := 1     
++---Muxes : 
+	   2 Input     16 Bit        Muxes := 1     
+Module cordic_stage 
+Detailed RTL Component Info : 
++---Adders : 
+	   3 Input     26 Bit       Adders := 1     
+	   3 Input     12 Bit       Adders := 2     
++---Muxes : 
+	   2 Input     26 Bit        Muxes := 1     
+	   2 Input     12 Bit        Muxes := 2     
+Module cordic 
+Detailed RTL Component Info : 
++---Adders : 
+	   2 Input     12 Bit       Adders := 1     
+	   2 Input     10 Bit       Adders := 2     
++---Muxes : 
+	   2 Input     12 Bit        Muxes := 4     
+	   2 Input     10 Bit        Muxes := 2     
+Module rotator 
+Detailed RTL Component Info : 
++---Registers : 
+	               12 Bit    Registers := 9     
+	               10 Bit    Registers := 3     
+Module main 
+Detailed RTL Component Info : 
++---Adders : 
+	   2 Input     31 Bit       Adders := 2     
+	   2 Input     20 Bit       Adders := 2     
+	   2 Input     15 Bit       Adders := 1     
+	   2 Input     10 Bit       Adders := 5     
+	   2 Input      8 Bit       Adders := 2     
++---Registers : 
+	               31 Bit    Registers := 1     
+	               20 Bit    Registers := 2     
+	               16 Bit    Registers := 1     
+	               15 Bit    Registers := 1     
+	               10 Bit    Registers := 3     
+	                8 Bit    Registers := 4     
+	                1 Bit    Registers := 4     
++---Muxes : 
+	   9 Input     31 Bit        Muxes := 1     
+	   2 Input     31 Bit        Muxes := 2     
+	   4 Input     31 Bit        Muxes := 1     
+	   2 Input     20 Bit        Muxes := 4     
+	   9 Input     16 Bit        Muxes := 1     
+	   2 Input     15 Bit        Muxes := 1     
+	   9 Input     15 Bit        Muxes := 1     
+	   2 Input     12 Bit        Muxes := 3     
+	   4 Input     10 Bit        Muxes := 2     
+	   2 Input     10 Bit        Muxes := 4     
+	   3 Input      8 Bit        Muxes := 1     
+	  19 Input      4 Bit        Muxes := 1     
+	   2 Input      3 Bit        Muxes := 2     
+	   9 Input      2 Bit        Muxes := 1     
+	   2 Input      1 Bit        Muxes := 13    
+	   4 Input      1 Bit        Muxes := 4     
+	   9 Input      1 Bit        Muxes := 13    
+---------------------------------------------------------------------------------
+Finished RTL Hierarchical Component Statistics
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Part Resource Summary
+---------------------------------------------------------------------------------
+Part Resources:
+DSPs: 220 (col length:60)
+BRAMs: 280 (col length: RAMB18 60 RAMB36 30)
+---------------------------------------------------------------------------------
+Finished Part Resource Summary
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Cross Boundary and Area Optimization
+---------------------------------------------------------------------------------
+Warning: Parallel synthesis criteria is not met 
+INFO: [Synth 8-5544] ROM "inst_blk_mem_gen/gnbram.gnativebmg.native_blk_mem_gen/valid.cstr/bindec_a.bindec_inst_a/ENOUT" won't be mapped to Block RAM because address size (4) smaller than threshold (5)
+INFO: [Synth 8-5544] ROM "inst_blk_mem_gen/gnbram.gnativebmg.native_blk_mem_gen/valid.cstr/bindec_a.bindec_inst_a/ENOUT" won't be mapped to Block RAM because address size (4) smaller than threshold (5)
+INFO: [Synth 8-5544] ROM "inst_blk_mem_gen/gnbram.gnativebmg.native_blk_mem_gen/valid.cstr/bindec_a.bindec_inst_a/ENOUT" won't be mapped to Block RAM because address size (4) smaller than threshold (5)
+INFO: [Synth 8-5544] ROM "inst_blk_mem_gen/gnbram.gnativebmg.native_blk_mem_gen/valid.cstr/bindec_a.bindec_inst_a/ENOUT" won't be mapped to Block RAM because address size (4) smaller than threshold (5)
+INFO: [Synth 8-5544] ROM "inst_blk_mem_gen/gnbram.gnativebmg.native_blk_mem_gen/valid.cstr/bindec_a.bindec_inst_a/ENOUT" won't be mapped to Block RAM because address size (4) smaller than threshold (5)
+INFO: [Synth 8-5544] ROM "inst_blk_mem_gen/gnbram.gnativebmg.native_blk_mem_gen/valid.cstr/bindec_a.bindec_inst_a/ENOUT" won't be mapped to Block RAM because address size (4) smaller than threshold (5)
+INFO: [Synth 8-5544] ROM "inst_blk_mem_gen/gnbram.gnativebmg.native_blk_mem_gen/valid.cstr/bindec_a.bindec_inst_a/ENOUT" won't be mapped to Block RAM because address size (4) smaller than threshold (5)
+INFO: [Synth 8-5544] ROM "inst_blk_mem_gen/gnbram.gnativebmg.native_blk_mem_gen/valid.cstr/bindec_a.bindec_inst_a/ENOUT" won't be mapped to Block RAM because address size (4) smaller than threshold (5)
+DSP Report: Generating DSP sX_multiplication_buffer, operation Mode is: A*(B:0x4dc).
+DSP Report: operator sX_multiplication_buffer is absorbed into DSP sX_multiplication_buffer.
+DSP Report: Generating DSP sY_multiplication_buffer, operation Mode is: A*(B:0x4dc).
+DSP Report: operator sY_multiplication_buffer is absorbed into DSP sY_multiplication_buffer.
+DSP Report: Generating DSP sX_multiplication_buffer, operation Mode is: A*(B:0x4dc).
+DSP Report: operator sX_multiplication_buffer is absorbed into DSP sX_multiplication_buffer.
+DSP Report: Generating DSP sY_multiplication_buffer, operation Mode is: A*(B:0x4dc).
+DSP Report: operator sY_multiplication_buffer is absorbed into DSP sY_multiplication_buffer.
+DSP Report: Generating DSP sX_multiplication_buffer, operation Mode is: A*(B:0x4dc).
+DSP Report: operator sX_multiplication_buffer is absorbed into DSP sX_multiplication_buffer.
+DSP Report: Generating DSP sY_multiplication_buffer, operation Mode is: A*(B:0x4dc).
+DSP Report: operator sY_multiplication_buffer is absorbed into DSP sY_multiplication_buffer.
+INFO: [Synth 8-5546] ROM "vga_control_inst/vsenable" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5545] ROM "rotating_next" won't be mapped to RAM because address size (31) is larger than maximum supported(25)
+INFO: [Synth 8-5545] ROM "cycles_next" won't be mapped to RAM because address size (31) is larger than maximum supported(25)
+INFO: [Synth 8-5546] ROM "angle_z_rotator" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-4652] Swapped enable and write-enable on 1 RAM instances of RAM vram_inst/ram_reg to conserve power
+INFO: [Synth 8-3886] merging instance 'U0/Z_in_rotator_reg[7]' (LD) to 'U0/Z_in_rotator_reg[11]'
+INFO: [Synth 8-3886] merging instance 'U0/Y_in_rotator_reg[7]' (LD) to 'U0/Y_in_rotator_reg[11]'
+INFO: [Synth 8-3886] merging instance 'U0/Z_in_rotator_reg[8]' (LD) to 'U0/Z_in_rotator_reg[11]'
+INFO: [Synth 8-3886] merging instance 'U0/Y_in_rotator_reg[8]' (LD) to 'U0/Y_in_rotator_reg[11]'
+INFO: [Synth 8-3886] merging instance 'U0/Z_in_rotator_reg[9]' (LD) to 'U0/Z_in_rotator_reg[11]'
+INFO: [Synth 8-3886] merging instance 'U0/Y_in_rotator_reg[9]' (LD) to 'U0/Y_in_rotator_reg[11]'
+INFO: [Synth 8-3886] merging instance 'U0/Z_in_rotator_reg[10]' (LD) to 'U0/Z_in_rotator_reg[11]'
+INFO: [Synth 8-3886] merging instance 'U0/Y_in_rotator_reg[10]' (LD) to 'U0/Y_in_rotator_reg[11]'
+INFO: [Synth 8-3886] merging instance 'U0/cordic_rotator/X_rotator_Y_in_reg[7]' (FD) to 'U0/cordic_rotator/X_rotator_Y_in_reg[11]'
+INFO: [Synth 8-3886] merging instance 'U0/cordic_rotator/X_rotator_X_in_reg[7]' (FD) to 'U0/cordic_rotator/X_rotator_X_in_reg[11]'
+INFO: [Synth 8-3886] merging instance 'U0/cordic_rotator/X_rotator_Y_in_reg[8]' (FD) to 'U0/cordic_rotator/X_rotator_Y_in_reg[11]'
+INFO: [Synth 8-3886] merging instance 'U0/cordic_rotator/X_rotator_X_in_reg[8]' (FD) to 'U0/cordic_rotator/X_rotator_X_in_reg[11]'
+INFO: [Synth 8-3886] merging instance 'U0/cordic_rotator/X_rotator_Y_in_reg[9]' (FD) to 'U0/cordic_rotator/X_rotator_Y_in_reg[11]'
+INFO: [Synth 8-3886] merging instance 'U0/cordic_rotator/X_rotator_X_in_reg[9]' (FD) to 'U0/cordic_rotator/X_rotator_X_in_reg[11]'
+INFO: [Synth 8-3886] merging instance 'U0/cordic_rotator/X_rotator_Y_in_reg[10]' (FD) to 'U0/cordic_rotator/X_rotator_Y_in_reg[11]'
+INFO: [Synth 8-3886] merging instance 'U0/cordic_rotator/X_rotator_X_in_reg[10]' (FD) to 'U0/cordic_rotator/X_rotator_X_in_reg[11]'
+INFO: [Synth 8-3886] merging instance 'U0/X_in_rotator_reg[7]' (LD) to 'U0/X_in_rotator_reg[11]'
+INFO: [Synth 8-3886] merging instance 'U0/X_in_rotator_reg[8]' (LD) to 'U0/X_in_rotator_reg[11]'
+INFO: [Synth 8-3886] merging instance 'U0/X_in_rotator_reg[9]' (LD) to 'U0/X_in_rotator_reg[11]'
+INFO: [Synth 8-3886] merging instance 'U0/X_in_rotator_reg[10]' (LD) to 'U0/X_in_rotator_reg[11]'
+INFO: [Synth 8-3886] merging instance 'U0/cordic_rotator/Y_rotator_Y_in_reg[7]' (FD) to 'U0/cordic_rotator/Y_rotator_Y_in_reg[11]'
+INFO: [Synth 8-3886] merging instance 'U0/cordic_rotator/Y_rotator_Y_in_reg[8]' (FD) to 'U0/cordic_rotator/Y_rotator_Y_in_reg[11]'
+INFO: [Synth 8-3886] merging instance 'U0/cordic_rotator/Y_rotator_Y_in_reg[9]' (FD) to 'U0/cordic_rotator/Y_rotator_Y_in_reg[11]'
+INFO: [Synth 8-3886] merging instance 'U0/cordic_rotator/Y_rotator_Y_in_reg[10]' (FD) to 'U0/cordic_rotator/Y_rotator_Y_in_reg[11]'
+INFO: [Synth 8-3333] propagating constant 1 across sequential element (U0/wiz_rst_reg)
+WARNING: [Synth 8-3332] Sequential element (X_in_rotator_reg[11]) is unused and will be removed from module main.
+WARNING: [Synth 8-3332] Sequential element (X_in_rotator_reg[6]) is unused and will be removed from module main.
+WARNING: [Synth 8-3332] Sequential element (X_in_rotator_reg[5]) is unused and will be removed from module main.
+WARNING: [Synth 8-3332] Sequential element (X_in_rotator_reg[4]) is unused and will be removed from module main.
+WARNING: [Synth 8-3332] Sequential element (X_in_rotator_reg[3]) is unused and will be removed from module main.
+WARNING: [Synth 8-3332] Sequential element (X_in_rotator_reg[2]) is unused and will be removed from module main.
+WARNING: [Synth 8-3332] Sequential element (X_in_rotator_reg[1]) is unused and will be removed from module main.
+WARNING: [Synth 8-3332] Sequential element (X_in_rotator_reg[0]) is unused and will be removed from module main.
+WARNING: [Synth 8-3332] Sequential element (Y_in_rotator_reg[11]) is unused and will be removed from module main.
+WARNING: [Synth 8-3332] Sequential element (Y_in_rotator_reg[6]) is unused and will be removed from module main.
+WARNING: [Synth 8-3332] Sequential element (Y_in_rotator_reg[5]) is unused and will be removed from module main.
+WARNING: [Synth 8-3332] Sequential element (Y_in_rotator_reg[4]) is unused and will be removed from module main.
+WARNING: [Synth 8-3332] Sequential element (Y_in_rotator_reg[3]) is unused and will be removed from module main.
+WARNING: [Synth 8-3332] Sequential element (Y_in_rotator_reg[2]) is unused and will be removed from module main.
+WARNING: [Synth 8-3332] Sequential element (Y_in_rotator_reg[1]) is unused and will be removed from module main.
+WARNING: [Synth 8-3332] Sequential element (Y_in_rotator_reg[0]) is unused and will be removed from module main.
+WARNING: [Synth 8-3332] Sequential element (Z_in_rotator_reg[11]) is unused and will be removed from module main.
+WARNING: [Synth 8-3332] Sequential element (Z_in_rotator_reg[6]) is unused and will be removed from module main.
+WARNING: [Synth 8-3332] Sequential element (Z_in_rotator_reg[5]) is unused and will be removed from module main.
+WARNING: [Synth 8-3332] Sequential element (Z_in_rotator_reg[4]) is unused and will be removed from module main.
+WARNING: [Synth 8-3332] Sequential element (Z_in_rotator_reg[3]) is unused and will be removed from module main.
+WARNING: [Synth 8-3332] Sequential element (Z_in_rotator_reg[2]) is unused and will be removed from module main.
+WARNING: [Synth 8-3332] Sequential element (Z_in_rotator_reg[1]) is unused and will be removed from module main.
+WARNING: [Synth 8-3332] Sequential element (Z_in_rotator_reg[0]) is unused and will be removed from module main.
+INFO: [Synth 8-3886] merging instance 'U0/i_28/angle_z_rotator_reg[8]' (FDE) to 'U0/i_28/angle_z_rotator_reg[9]'
+INFO: [Synth 8-3886] merging instance 'U0/cordic_rotator/Z_angle_reg[8]' (FD) to 'U0/cordic_rotator/Z_angle_reg[9]'
+---------------------------------------------------------------------------------
+Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:01:52 ; elapsed = 00:02:12 . Memory (MB): peak = 1763.973 ; gain = 373.125 ; free physical = 3733 ; free virtual = 7325
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start ROM, RAM, DSP and Shift Register Reporting
+---------------------------------------------------------------------------------
+
+Block RAM: Preliminary Mapping  Report (see note below)
++------------+------------+------------------------+---+---+------------------------+---+---+------------------+--------+--------+
+|Module Name | RTL Object | PORT A (Depth x Width) | W | R | PORT B (Depth x Width) | W | R | Ports driving FF | RAMB18 | RAMB36 | 
++------------+------------+------------------------+---+---+------------------------+---+---+------------------+--------+--------+
+|vram:       | ram_reg    | 64 K x 1(READ_FIRST)   | W |   | 64 K x 1(WRITE_FIRST)  |   | R | Port A and B     | 0      | 2      | 
++------------+------------+------------------------+---+---+------------------------+---+---+------------------+--------+--------+
+
+Note: The table above is a preliminary report that shows the Block RAMs at the current stage of the synthesis flow. Some Block RAMs may be reimplemented as non Block RAM primitives later in the synthesis flow. Multiple instantiated Block RAMs are reported only once. 
+
+DSP: Preliminary Mapping  Report (see note below)
++------------+-------------+--------+--------+--------+--------+--------+------+------+------+------+-------+------+------+
+|Module Name | DSP Mapping | A Size | B Size | C Size | D Size | P Size | AREG | BREG | CREG | DREG | ADREG | MREG | PREG | 
++------------+-------------+--------+--------+--------+--------+--------+------+------+------+------+-------+------+------+
+|cordic      | A*(B:0x4dc) | 12     | 12     | -      | -      | 24     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|cordic      | A*(B:0x4dc) | 12     | 12     | -      | -      | 24     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|cordic      | A*(B:0x4dc) | 12     | 12     | -      | -      | 24     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|cordic      | A*(B:0x4dc) | 12     | 12     | -      | -      | 24     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|cordic      | A*(B:0x4dc) | 12     | 12     | -      | -      | 24     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|cordic      | A*(B:0x4dc) | 12     | 12     | -      | -      | 24     | 0    | 0    | -    | -    | -     | 0    | 0    | 
++------------+-------------+--------+--------+--------+--------+--------+------+------+------+------+-------+------+------+
+
+Note: The table above is a preliminary report that shows the DSPs inferred at the current stage of the synthesis flow. Some DSP may be reimplemented as non DSP primitives later in the synthesis flow. Multiple instantiated DSPs are reported only once.
+---------------------------------------------------------------------------------
+Finished ROM, RAM, DSP and Shift Register Reporting
+---------------------------------------------------------------------------------
+INFO: [Synth 8-6837] The timing for the instance U0/i_0/vram_inst/ram_reg_1 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the block ram. Providing additional output register may help in improving timing.
+
+Report RTL Partitions: 
++-+--------------+------------+----------+
+| |RTL Partition |Replication |Instances |
++-+--------------+------------+----------+
++-+--------------+------------+----------+
+---------------------------------------------------------------------------------
+Start Applying XDC Timing Constraints
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Applying XDC Timing Constraints : Time (s): cpu = 00:02:04 ; elapsed = 00:02:24 . Memory (MB): peak = 1779.973 ; gain = 389.125 ; free physical = 3468 ; free virtual = 7103
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Timing Optimization
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Timing Optimization : Time (s): cpu = 00:02:06 ; elapsed = 00:02:26 . Memory (MB): peak = 1806.004 ; gain = 415.156 ; free physical = 3450 ; free virtual = 7084
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start ROM, RAM, DSP and Shift Register Reporting
+---------------------------------------------------------------------------------
+
+Block RAM: Final Mapping  Report
++------------+------------+------------------------+---+---+------------------------+---+---+------------------+--------+--------+
+|Module Name | RTL Object | PORT A (Depth x Width) | W | R | PORT B (Depth x Width) | W | R | Ports driving FF | RAMB18 | RAMB36 | 
++------------+------------+------------------------+---+---+------------------------+---+---+------------------+--------+--------+
+|vram:       | ram_reg    | 64 K x 1(READ_FIRST)   | W |   | 64 K x 1(WRITE_FIRST)  |   | R | Port A and B     | 0      | 2      | 
++------------+------------+------------------------+---+---+------------------------+---+---+------------------+--------+--------+
+
+---------------------------------------------------------------------------------
+Finished ROM, RAM, DSP and Shift Register Reporting
+---------------------------------------------------------------------------------
+
+Report RTL Partitions: 
++-+--------------+------------+----------+
+| |RTL Partition |Replication |Instances |
++-+--------------+------------+----------+
++-+--------------+------------+----------+
+---------------------------------------------------------------------------------
+Start Technology Mapping
+---------------------------------------------------------------------------------
+INFO: [Synth 8-6837] The timing for the instance U0/vram_inst/ram_reg_1 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the block ram. Providing additional output register may help in improving timing.
+---------------------------------------------------------------------------------
+Finished Technology Mapping : Time (s): cpu = 00:02:07 ; elapsed = 00:02:28 . Memory (MB): peak = 1814.012 ; gain = 423.164 ; free physical = 3411 ; free virtual = 7086
+---------------------------------------------------------------------------------
+
+Report RTL Partitions: 
++-+--------------+------------+----------+
+| |RTL Partition |Replication |Instances |
++-+--------------+------------+----------+
++-+--------------+------------+----------+
+---------------------------------------------------------------------------------
+Start IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Flattening Before IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Flattening Before IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Final Netlist Cleanup
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Final Netlist Cleanup
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished IO Insertion : Time (s): cpu = 00:02:08 ; elapsed = 00:02:29 . Memory (MB): peak = 1814.012 ; gain = 423.164 ; free physical = 3409 ; free virtual = 7082
+---------------------------------------------------------------------------------
+
+Report Check Netlist: 
++------+------------------+-------+---------+-------+------------------+
+|      |Item              |Errors |Warnings |Status |Description       |
++------+------------------+-------+---------+-------+------------------+
+|1     |multi_driven_nets |      0|        0|Passed |Multi driven nets |
++------+------------------+-------+---------+-------+------------------+
+---------------------------------------------------------------------------------
+Start Renaming Generated Instances
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Instances : Time (s): cpu = 00:02:09 ; elapsed = 00:02:29 . Memory (MB): peak = 1814.012 ; gain = 423.164 ; free physical = 3409 ; free virtual = 7082
+---------------------------------------------------------------------------------
+
+Report RTL Partitions: 
++-+--------------+------------+----------+
+| |RTL Partition |Replication |Instances |
++-+--------------+------------+----------+
++-+--------------+------------+----------+
+---------------------------------------------------------------------------------
+Start Rebuilding User Hierarchy
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Rebuilding User Hierarchy : Time (s): cpu = 00:02:09 ; elapsed = 00:02:29 . Memory (MB): peak = 1814.012 ; gain = 423.164 ; free physical = 3409 ; free virtual = 7083
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Ports
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Ports : Time (s): cpu = 00:02:09 ; elapsed = 00:02:29 . Memory (MB): peak = 1814.012 ; gain = 423.164 ; free physical = 3409 ; free virtual = 7083
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Handling Custom Attributes
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Handling Custom Attributes : Time (s): cpu = 00:02:09 ; elapsed = 00:02:29 . Memory (MB): peak = 1814.012 ; gain = 423.164 ; free physical = 3409 ; free virtual = 7083
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Nets
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Nets : Time (s): cpu = 00:02:09 ; elapsed = 00:02:29 . Memory (MB): peak = 1814.012 ; gain = 423.164 ; free physical = 3409 ; free virtual = 7083
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Writing Synthesis Report
+---------------------------------------------------------------------------------
+
+Report BlackBoxes: 
++-+--------------+----------+
+| |BlackBox name |Instances |
++-+--------------+----------+
++-+--------------+----------+
+
+Report Cell Usage: 
++------+-----------+------+
+|      |Cell       |Count |
++------+-----------+------+
+|1     |CARRY4     |   344|
+|2     |DSP48E1    |     6|
+|3     |LUT1       |   135|
+|4     |LUT2       |   585|
+|5     |LUT3       |   685|
+|6     |LUT4       |    73|
+|7     |LUT5       |    69|
+|8     |LUT6       |   142|
+|9     |MUXF7      |     8|
+|10    |RAMB36E1   |     1|
+|11    |RAMB36E1_1 |     1|
+|12    |RAMB36E1_2 |     1|
+|13    |RAMB36E1_3 |     1|
+|14    |RAMB36E1_4 |     1|
+|15    |RAMB36E1_5 |     1|
+|16    |RAMB36E1_6 |     1|
+|17    |RAMB36E1_7 |     1|
+|18    |RAMB36E1_8 |     1|
+|19    |RAMB36E1_9 |     1|
+|20    |FDCE       |    20|
+|21    |FDPE       |     1|
+|22    |FDRE       |   387|
+|23    |FDSE       |    11|
++------+-----------+------+
+
+Report Instance Areas: 
++------+-------------------------------------------------------+----------------------------------------------+------+
+|      |Instance                                               |Module                                        |Cells |
++------+-------------------------------------------------------+----------------------------------------------+------+
+|1     |top                                                    |                                              |  2476|
+|2     |  U0                                                   |main                                          |  2476|
+|3     |    sram_inst                                          |sram_internal                                 |    46|
+|4     |      U0                                               |blk_mem_gen_v8_4_2                            |    46|
+|5     |        inst_blk_mem_gen                               |blk_mem_gen_v8_4_2_synth                      |    46|
+|6     |          \gnbram.gnativebmg.native_blk_mem_gen        |blk_mem_gen_top                               |    46|
+|7     |            \valid.cstr                                |blk_mem_gen_generic_cstr                      |    46|
+|8     |              \bindec_a.bindec_inst_a                  |bindec                                        |     6|
+|9     |              \has_mux_a.A                             |blk_mem_gen_mux                               |    30|
+|10    |              \ramloop[0].ram.r                        |blk_mem_gen_prim_width                        |     1|
+|11    |                \prim_init.ram                         |blk_mem_gen_prim_wrapper_init                 |     1|
+|12    |              \ramloop[1].ram.r                        |blk_mem_gen_prim_width__parameterized0        |     1|
+|13    |                \prim_init.ram                         |blk_mem_gen_prim_wrapper_init__parameterized0 |     1|
+|14    |              \ramloop[2].ram.r                        |blk_mem_gen_prim_width__parameterized1        |     2|
+|15    |                \prim_init.ram                         |blk_mem_gen_prim_wrapper_init__parameterized1 |     2|
+|16    |              \ramloop[3].ram.r                        |blk_mem_gen_prim_width__parameterized2        |     1|
+|17    |                \prim_init.ram                         |blk_mem_gen_prim_wrapper_init__parameterized2 |     1|
+|18    |              \ramloop[4].ram.r                        |blk_mem_gen_prim_width__parameterized3        |     1|
+|19    |                \prim_init.ram                         |blk_mem_gen_prim_wrapper_init__parameterized3 |     1|
+|20    |              \ramloop[5].ram.r                        |blk_mem_gen_prim_width__parameterized4        |     1|
+|21    |                \prim_init.ram                         |blk_mem_gen_prim_wrapper_init__parameterized4 |     1|
+|22    |              \ramloop[6].ram.r                        |blk_mem_gen_prim_width__parameterized5        |     1|
+|23    |                \prim_init.ram                         |blk_mem_gen_prim_wrapper_init__parameterized5 |     1|
+|24    |              \ramloop[7].ram.r                        |blk_mem_gen_prim_width__parameterized6        |     2|
+|25    |                \prim_init.ram                         |blk_mem_gen_prim_wrapper_init__parameterized6 |     2|
+|26    |    cordic_rotator                                     |rotator                                       |  1658|
+|27    |      x_rotator                                        |cordic                                        |   489|
+|28    |        \stages_instantiation[3].current_cordic_stage  |cordic_stage_13                               |     4|
+|29    |        \stages_instantiation[4].current_cordic_stage  |cordic_stage_14                               |    16|
+|30    |        \stages_instantiation[5].current_cordic_stage  |cordic_stage_15                               |    16|
+|31    |        \stages_instantiation[6].current_cordic_stage  |cordic_stage_16                               |    16|
+|32    |        \stages_instantiation[7].current_cordic_stage  |cordic_stage_17                               |    16|
+|33    |      y_rotator                                        |cordic_0                                      |   512|
+|34    |        \stages_instantiation[2].current_cordic_stage  |cordic_stage_7                                |     3|
+|35    |        \stages_instantiation[3].current_cordic_stage  |cordic_stage_8                                |    15|
+|36    |        \stages_instantiation[4].current_cordic_stage  |cordic_stage_9                                |    16|
+|37    |        \stages_instantiation[5].current_cordic_stage  |cordic_stage_10                               |    16|
+|38    |        \stages_instantiation[6].current_cordic_stage  |cordic_stage_11                               |    16|
+|39    |        \stages_instantiation[7].current_cordic_stage  |cordic_stage_12                               |    39|
+|40    |      z_rotator                                        |cordic_1                                      |   490|
+|41    |        \stages_instantiation[2].current_cordic_stage  |cordic_stage                                  |     3|
+|42    |        \stages_instantiation[3].current_cordic_stage  |cordic_stage_2                                |    15|
+|43    |        \stages_instantiation[4].current_cordic_stage  |cordic_stage_3                                |    16|
+|44    |        \stages_instantiation[5].current_cordic_stage  |cordic_stage_4                                |    16|
+|45    |        \stages_instantiation[6].current_cordic_stage  |cordic_stage_5                                |    16|
+|46    |        \stages_instantiation[7].current_cordic_stage  |cordic_stage_6                                |    39|
+|47    |    vga_control_inst                                   |vga_ctrl                                      |   112|
+|48    |    video_driver_inst                                  |video_driver                                  |    19|
+|49    |    vram_inst                                          |vram                                          |     2|
++------+-------------------------------------------------------+----------------------------------------------+------+
+---------------------------------------------------------------------------------
+Finished Writing Synthesis Report : Time (s): cpu = 00:02:09 ; elapsed = 00:02:29 . Memory (MB): peak = 1814.012 ; gain = 423.164 ; free physical = 3409 ; free virtual = 7083
+---------------------------------------------------------------------------------
+Synthesis finished with 0 errors, 0 critical warnings and 180 warnings.
+Synthesis Optimization Runtime : Time (s): cpu = 00:02:02 ; elapsed = 00:02:21 . Memory (MB): peak = 1814.012 ; gain = 262.156 ; free physical = 3465 ; free virtual = 7138
+Synthesis Optimization Complete : Time (s): cpu = 00:02:09 ; elapsed = 00:02:29 . Memory (MB): peak = 1814.020 ; gain = 423.164 ; free physical = 3465 ; free virtual = 7138
+INFO: [Project 1-571] Translating synthesized netlist
+INFO: [Netlist 29-17] Analyzing 368 Unisim elements for replacement
+INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
+INFO: [Project 1-570] Preparing netlist for logic optimization
+INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1814.020 ; gain = 0.000 ; free physical = 3427 ; free virtual = 7071
+INFO: [Project 1-111] Unisim Transformation Summary:
+No Unisim elements were transformed.
+
+INFO: [Common 17-83] Releasing license: Synthesis
+114 Infos, 130 Warnings, 0 Critical Warnings and 0 Errors encountered.
+synth_design completed successfully
+synth_design: Time (s): cpu = 00:02:12 ; elapsed = 00:02:31 . Memory (MB): peak = 1814.020 ; gain = 423.258 ; free physical = 3487 ; free virtual = 7132
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1814.020 ; gain = 0.000 ; free physical = 3487 ; free virtual = 7132
+WARNING: [Constraints 18-5210] No constraints selected for write.
+Resolution: This message can indicate that there are no constraints for the design, or it can indicate that the used_in flags are set such that the constraints are ignored. This later case is used when running synth_design to not write synthesis constraints to the resulting checkpoint. Instead, project constraints are read when the synthesized design is opened.
+INFO: [Common 17-1381] The checkpoint '/home/ljsch/sisdig_proyecto_final/sisdig_proyecto_final.runs/design_1_main_0_0_synth_1/design_1_main_0_0.dcp' has been generated.
+INFO: [Coretcl 2-1174] Renamed 48 cell refs.
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1838.023 ; gain = 0.000 ; free physical = 3481 ; free virtual = 7130
+WARNING: [Constraints 18-5210] No constraints selected for write.
+Resolution: This message can indicate that there are no constraints for the design, or it can indicate that the used_in flags are set such that the constraints are ignored. This later case is used when running synth_design to not write synthesis constraints to the resulting checkpoint. Instead, project constraints are read when the synthesized design is opened.
+INFO: [Common 17-1381] The checkpoint '/home/ljsch/sisdig_proyecto_final/sisdig_proyecto_final.runs/design_1_main_0_0_synth_1/design_1_main_0_0.dcp' has been generated.
+INFO: [runtcl-4] Executing : report_utilization -file design_1_main_0_0_utilization_synth.rpt -pb design_1_main_0_0_utilization_synth.pb
+INFO: [Common 17-206] Exiting Vivado at Thu Aug 17 00:16:24 2023...

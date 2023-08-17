@@ -1,0 +1,14 @@
+# compile vhdl design source files
+vhdl xil_defaultlib  \
+"../../../../../FIUBA/SisDig/repo_TP_final/repo_nacho/cordic_vhdl/code/src/Cordic/cordic.vhdl" \
+"../../../../../FIUBA/SisDig/repo_TP_final/repo_nacho/cordic_vhdl/code/src/Cordic/cordic_stage.vhdl" \
+"../../../../../FIUBA/SisDig/repo_TP_final/repo_nacho/cordic_vhdl/code/src/Cordic/rotator.vhdl" \
+"../../../../../FIUBA/SisDig/repo_TP_final/repo_nacho/cordic_vhdl/code/src/video_driver.vhd" \
+"../../../../../FIUBA/SisDig/repo_TP_final/repo_nacho/cordic_vhdl/code/src/vram.vhd" \
+"../../../../../FIUBA/SisDig/repo_TP_final/repo_nacho/cordic_vhdl/code/src/top.vhd" \
+"../../../../project_2.ip_user_files/bd/design_1/ip/design_1_top_level_0_0/sim/design_1_top_level_0_0.vhd" \
+"../../../../project_2.ip_user_files/bd/design_1/sim/design_1.vhd" \
+"../../../../project_2.srcs/sources_1/bd/design_1/hdl/design_1_wrapper.vhd" \
+
+# Do not sort compile order
+nosort

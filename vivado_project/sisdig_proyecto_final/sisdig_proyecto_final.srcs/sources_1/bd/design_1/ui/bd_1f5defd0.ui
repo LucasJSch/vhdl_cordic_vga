@@ -1,0 +1,52 @@
+{
+   "ExpandedHierarchyInLayout":"",
+   "guistr":"# # String gsaved with Nlview 6.8.11  2018-08-07 bk=1.4403 VDI=40 GEI=35 GUI=JA:9.0 TLS
+#  -string -flagsOSRD
+preplace port JA2 -pg 1 -y 240 -defaultsOSRD
+preplace port JA3 -pg 1 -y 260 -defaultsOSRD
+preplace port btn_x1 -pg 1 -y 280 -defaultsOSRD
+preplace port JA4 -pg 1 -y 280 -defaultsOSRD
+preplace port btn_x2 -pg 1 -y 300 -defaultsOSRD
+preplace port VGA_VS -pg 1 -y 320 -defaultsOSRD
+preplace port btn_y1 -pg 1 -y 320 -defaultsOSRD
+preplace port btn_y2 -pg 1 -y 340 -defaultsOSRD
+preplace port clk -pg 1 -y 80 -defaultsOSRD
+preplace port btn_z1 -pg 1 -y 360 -defaultsOSRD
+preplace port VGA_HS -pg 1 -y 300 -defaultsOSRD
+preplace port JA1 -pg 1 -y 220 -defaultsOSRD
+preplace portBus VGA_G3 -pg 1 -y 460 -defaultsOSRD
+preplace portBus VGA_B -pg 1 -y 380 -defaultsOSRD
+preplace portBus VGA_R3 -pg 1 -y 480 -defaultsOSRD
+preplace portBus VGA_R -pg 1 -y 340 -defaultsOSRD
+preplace portBus VGA_G -pg 1 -y 360 -defaultsOSRD
+preplace portBus VGA_B2 -pg 1 -y 420 -defaultsOSRD
+preplace portBus VGA_B3 -pg 1 -y 440 -defaultsOSRD
+preplace inst xlconstant_2 -pg 1 -lvl 2 -y 480 -defaultsOSRD
+preplace inst main_0 -pg 1 -lvl 2 -y 290 -defaultsOSRD
+preplace inst clk_wiz_0 -pg 1 -lvl 1 -y 70 -defaultsOSRD
+preplace netloc main_0_red_out_main 1 2 1 NJ
+preplace netloc clk_wiz_0_locked 1 1 1 230
+preplace netloc xlconstant_2_dout 1 2 1 520J
+preplace netloc main_0_vs_main 1 2 1 NJ
+preplace netloc main_0_hs_main 1 2 1 NJ
+preplace netloc btn_y2_1 1 0 2 NJ 340 NJ
+preplace netloc main_0_wiz_rst 1 0 3 30 140 NJ 140 520
+preplace netloc btn_x1_1 1 0 2 NJ 280 NJ
+preplace netloc main_0_grn_out_main 1 2 1 NJ
+preplace netloc main_0_JA1 1 2 1 NJ
+preplace netloc clk_1 1 0 2 20 220 NJ
+preplace netloc main_0_JA2 1 2 1 NJ
+preplace netloc clk_wiz_0_clk_out1 1 1 1 240
+preplace netloc btn_z1_1 1 0 2 NJ 360 NJ
+preplace netloc btn_x2_1 1 0 2 NJ 300 NJ
+preplace netloc main_0_JA3 1 2 1 NJ
+preplace netloc main_0_blu_out_main 1 2 1 NJ
+preplace netloc main_0_JA4 1 2 1 NJ
+preplace netloc btn_y1_1 1 0 2 NJ 320 NJ
+levelinfo -pg 1 0 130 380 540 -top 0 -bot 540
+"
+}
+{
+   "da_board_cnt":"4",
+   "da_clkrst_cnt":"1"
+}

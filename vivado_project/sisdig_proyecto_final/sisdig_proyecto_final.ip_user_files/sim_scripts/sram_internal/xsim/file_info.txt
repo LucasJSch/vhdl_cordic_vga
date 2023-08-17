@@ -1,0 +1,2 @@
+sram_internal.v,verilog,xil_defaultlib,../../../ip/sram_internal/sim/sram_internal.v,
+glbl.v,Verilog,xil_defaultlib,glbl.v

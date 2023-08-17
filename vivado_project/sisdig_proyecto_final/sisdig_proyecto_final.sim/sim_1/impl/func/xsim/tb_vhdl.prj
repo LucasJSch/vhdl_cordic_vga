@@ -1,0 +1,13 @@
+# compile vhdl design source files
+vhdl xil_defaultlib  \
+"tb_func_impl.vhd" \
+"../../../../../../FIUBA/SisDig/repo_TP_final/repo_nacho/cordic_vhdl/code/src/Cordic/cordic.vhdl" \
+"../../../../../../FIUBA/SisDig/repo_TP_final/repo_nacho/cordic_vhdl/code/src/Cordic/cordic_stage.vhdl" \
+"../../../../../../FIUBA/SisDig/repo_TP_final/repo_nacho/cordic_vhdl/code/src/Cordic/rotator.vhdl" \
+"../../../../../../FIUBA/SisDig/repo_TP_final/repo_nacho/cordic_vhdl/code/src/top.vhd" \
+"../../../../../../FIUBA/SisDig/repo_TP_final/repo_nacho/cordic_vhdl/code/src/video_driver.vhd" \
+"../../../../../../FIUBA/SisDig/repo_TP_final/repo_nacho/cordic_vhdl/code/src/vram.vhd" \
+"../../../../../project_2.srcs/sim_1/new/tb.vhd" \
+
+# Do not sort compile order
+nosort
